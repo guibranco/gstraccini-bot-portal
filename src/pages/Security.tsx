@@ -388,7 +388,7 @@ export default function SecurityPage() {
                       <p className="text-gray-700 mb-2">
                         <strong>Security Documentation:</strong>{' '}
                         <a 
-                          href="https://docs.bot.straccini.com/security" 
+                          href="https://docs.gstraccini.bot/security" 
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-600 hover:text-blue-800 transition-colors"

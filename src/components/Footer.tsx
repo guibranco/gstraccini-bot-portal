@@ -56,7 +56,7 @@ export function Footer() {
               </li>
               <li>
                 <a 
-                  href="https://docs.bot.straccini.com"
+                  href="https://docs.gstraccini.bot"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
