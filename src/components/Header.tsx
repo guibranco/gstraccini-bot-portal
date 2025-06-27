@@ -199,7 +199,7 @@ export function Header({ user }: HeaderProps) {
 
             {/* Documentation */}
             <a
-              href="https://docs.bot.straccini.com"
+              href="https://docs.gstraccini.bot"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-blue-700 dark:hover:bg-gray-700 transition-colors"

@@ -19,8 +19,8 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Resources</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="https://docs.bot.straccini.com" className="hover:text-white transition-colors">Documentation</a></li>
-              <li><a href="https://docs.bot.straccini.com/api" className="hover:text-white transition-colors">API Reference</a></li>
+              <li><a href="https://docs.gstraccini.bot" className="hover:text-white transition-colors">Documentation</a></li>
+              <li><a href="https://docs.gstraccini.bot/api" className="hover:text-white transition-colors">API Reference</a></li>
               <li><a href="https://github.com/guibranco/gstraccini-bot-service" className="hover:text-white transition-colors">GitHub</a></li>
               <li><a href="https://github.com/marketplace/gstraccini-bot" className="hover:text-white transition-colors">GitHub Marketplace</a></li>
             </ul>
