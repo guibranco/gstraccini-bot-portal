@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { PublicLayout } from './layouts/PublicLayout';
 import { AuthenticatedLayout } from './layouts/AuthenticatedLayout';
@@ -23,7 +23,7 @@ import { Integrations } from './pages/Integrations';
 function App() {
   return (
     <AuthProvider>
-      <HashRouter>
+      <Router>
         <Routes>
           {/* Public Routes - Landing Pages */}
           <Route path="/" element={<PublicLayout />}>
@@ -53,7 +53,7 @@ function App() {
           {/* Catch all route - redirect to landing */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </HashRouter>
+      </Router>
     </AuthProvider>
   );
 }
