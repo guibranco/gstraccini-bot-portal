@@ -1,11 +1,13 @@
-import { Cable, Clock, ExternalLink } from 'lucide-react';
-import type { Integration } from '../../types';
+import { Cable, Clock, ExternalLink } from "lucide-react";
+import type { Integration } from "../../types";
 
 interface IntegrationsSectionProps {
   integrations: Integration[];
 }
 
-export function IntegrationsSection({ integrations = [] }: IntegrationsSectionProps) {
+export function IntegrationsSection({
+  integrations = [],
+}: IntegrationsSectionProps) {
   if (!integrations?.length) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg lg:col-span-2">
@@ -14,14 +16,16 @@ export function IntegrationsSection({ integrations = [] }: IntegrationsSectionPr
             <Cable className="w-5 h-5 mr-2" />
             Third-party Integrations
           </h2>
-          <p className="text-gray-500 dark:text-gray-400">No integrations found.</p>
+          <p className="text-gray-500 dark:text-gray-400">
+            No integrations found.
+          </p>
         </div>
       </div>
     );
   }
 
   const renderMetricValue = (value: unknown): string => {
-    if (typeof value === 'object' && value !== null) {
+    if (typeof value === "object" && value !== null) {
       return JSON.stringify(value);
     }
     return String(value);
@@ -44,25 +48,28 @@ export function IntegrationsSection({ integrations = [] }: IntegrationsSectionPr
                 <h3 className="font-medium text-gray-900 dark:text-white">
                   {integration.provider}
                 </h3>
-                <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                  integration.status === 'Active'
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                    : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                }`}>
+                <span
+                  className={`px-2 py-1 text-xs font-medium rounded-full ${
+                    integration.status === "Active"
+                      ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                      : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                  }`}
+                >
                   {integration.status}
                 </span>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                   <Clock className="w-4 h-4 mr-1" />
-                  Last check: {new Date(integration.last_check).toLocaleString()}
+                  Last check:{" "}
+                  {new Date(integration.last_check).toLocaleString()}
                 </div>
                 {integration.metrics && (
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     {Object.entries(integration.metrics).map(([key, value]) => (
                       <div key={key}>
                         <span className="text-gray-500 dark:text-gray-400">
-                          {key.replace(/_/g, ' ')}:
+                          {key.replace(/_/g, " ")}:
                         </span>
                         <span className="ml-1 font-medium text-gray-900 dark:text-white">
                           {renderMetricValue(value)}

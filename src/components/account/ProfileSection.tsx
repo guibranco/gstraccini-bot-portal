@@ -1,5 +1,5 @@
-import { User } from 'lucide-react';
-import type { User as UserType } from '../../types';
+import { User } from "lucide-react";
+import type { User as UserType } from "../../types";
 
 interface ProfileSectionProps {
   user: UserType;
@@ -12,12 +12,17 @@ export function ProfileSection({ user, onSubmit }: ProfileSectionProps) {
       <div className="p-6">
         <div className="flex items-center space-x-4 mb-6">
           <User className="w-6 h-6 text-gray-400" />
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Profile Information</h2>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            Profile Information
+          </h2>
         </div>
         <form onSubmit={onSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="github_id" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="github_id"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 GitHub ID
               </label>
               <input
@@ -29,7 +34,10 @@ export function ProfileSection({ user, onSubmit }: ProfileSectionProps) {
               />
             </div>
             <div>
-              <label htmlFor="github_username" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="github_username"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 GitHub Username
               </label>
               <input
@@ -41,7 +49,10 @@ export function ProfileSection({ user, onSubmit }: ProfileSectionProps) {
               />
             </div>
             <div>
-              <label htmlFor="github_email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="github_email"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 GitHub Email
               </label>
               <input
@@ -53,7 +64,10 @@ export function ProfileSection({ user, onSubmit }: ProfileSectionProps) {
               />
             </div>
             <div>
-              <label htmlFor="communications_email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="communications_email"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 Communications Email
               </label>
               <input
@@ -64,7 +78,10 @@ export function ProfileSection({ user, onSubmit }: ProfileSectionProps) {
               />
             </div>
             <div>
-              <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="first_name"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 First Name
               </label>
               <input
@@ -75,7 +92,10 @@ export function ProfileSection({ user, onSubmit }: ProfileSectionProps) {
               />
             </div>
             <div>
-              <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="last_name"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 Last Name
               </label>
               <input

@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { Github, Bot } from 'lucide-react';
+import { Link } from "react-router-dom";
+import { Github, Bot } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,7 +11,9 @@ export function Footer() {
           {/* Bot Name with Icon */}
           <div className="flex items-center space-x-3">
             <Bot className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-bold text-gray-900 dark:text-white">GStraccini Bot</span>
+            <span className="text-xl font-bold text-gray-900 dark:text-white">
+              GStraccini Bot
+            </span>
           </div>
 
           {/* Copyright */}
@@ -23,7 +25,7 @@ export function Footer() {
           <nav>
             <ul className="flex flex-wrap justify-center gap-6 text-sm">
               <li>
-                <Link 
+                <Link
                   to="/privacy"
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
@@ -31,7 +33,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   to="/terms"
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
@@ -39,7 +41,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   to="/security"
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
@@ -47,7 +49,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
+                <Link
                   to="/status"
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
@@ -55,7 +57,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a 
+                <a
                   href="https://docs.gstraccini.bot"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -65,7 +67,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://api.bot.straccini.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -75,7 +77,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://github.com/marketplace/gstraccini-bot"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -86,7 +88,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://github.com/guibranco/gstraccini-bot-service"
                   target="_blank"
                   rel="noopener noreferrer"

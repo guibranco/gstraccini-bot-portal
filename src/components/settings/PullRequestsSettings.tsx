@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import { SettingsCard } from './SettingsCard';
-import { SettingToggle } from './SettingToggle';
+import { ReactNode } from "react";
+import { SettingsCard } from "./SettingsCard";
+import { SettingToggle } from "./SettingToggle";
 
 interface PullRequestsSettingsProps {
   icon: ReactNode;
@@ -14,12 +14,13 @@ interface PullRequestsSettingsProps {
   onChange: (key: string, value: boolean | number) => void;
 }
 
-export function PullRequestsSettings({ icon, settings, onChange }: PullRequestsSettingsProps) {
+export function PullRequestsSettings({
+  icon,
+  settings,
+  onChange,
+}: PullRequestsSettingsProps) {
   return (
-    <SettingsCard
-      title="Pull Requests Settings"
-      icon={icon}
-    >
+    <SettingsCard title="Pull Requests Settings" icon={icon}>
       <div className="space-y-6">
         <SettingToggle
           id="pr_template_description"
@@ -27,7 +28,7 @@ export function PullRequestsSettings({ icon, settings, onChange }: PullRequestsS
           description="Automatically add a description to pull requests based on a predefined template"
           note="This action will only be applied if the pull request description is empty"
           checked={settings.prTemplateDescription}
-          onChange={(checked) => onChange('prTemplateDescription', checked)}
+          onChange={(checked) => onChange("prTemplateDescription", checked)}
         />
 
         <SettingToggle
@@ -35,7 +36,7 @@ export function PullRequestsSettings({ icon, settings, onChange }: PullRequestsS
           label="Auto Approval Pull Request"
           description="Automatically approve the pull request if no issues are found"
           checked={settings.autoReviewPr}
-          onChange={(checked) => onChange('autoReviewPr', checked)}
+          onChange={(checked) => onChange("autoReviewPr", checked)}
         />
 
         <SettingToggle
@@ -43,7 +44,7 @@ export function PullRequestsSettings({ icon, settings, onChange }: PullRequestsS
           label="Enable Auto-Merge"
           description="Automatically merge pull requests when all checks pass from trusted senders"
           checked={settings.autoMergePr}
-          onChange={(checked) => onChange('autoMergePr', checked)}
+          onChange={(checked) => onChange("autoMergePr", checked)}
         />
 
         <SettingToggle
@@ -51,12 +52,12 @@ export function PullRequestsSettings({ icon, settings, onChange }: PullRequestsS
           label="Create issues for pending tasks in code comments"
           description="Automatically create issues for specific keywords found in pull request content"
           badges={[
-            { text: 'Fixme', icon: 'wrench' },
-            { text: 'Todo', icon: 'tasks' },
-            { text: 'Bug', icon: 'bug' }
+            { text: "Fixme", icon: "wrench" },
+            { text: "Todo", icon: "tasks" },
+            { text: "Bug", icon: "bug" },
           ]}
           checked={settings.createIssue}
-          onChange={(checked) => onChange('createIssue', checked)}
+          onChange={(checked) => onChange("createIssue", checked)}
         />
 
         <SettingToggle
@@ -64,7 +65,7 @@ export function PullRequestsSettings({ icon, settings, onChange }: PullRequestsS
           label="Pull Requests Notification"
           description="Notify me when new pull requests are created"
           checked={settings.notifyPullRequests}
-          onChange={(checked) => onChange('notifyPullRequests', checked)}
+          onChange={(checked) => onChange("notifyPullRequests", checked)}
         />
       </div>
     </SettingsCard>

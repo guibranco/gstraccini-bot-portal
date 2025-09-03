@@ -1,4 +1,4 @@
-import type { User } from '../../types';
+import type { User } from "../../types";
 
 interface WelcomeSectionProps {
   user: User;
@@ -16,7 +16,7 @@ export function WelcomeSection({ user }: WelcomeSectionProps) {
           />
           <div>
             <h1 className="text-3xl font-bold">
-              Welcome back,{' '}
+              Welcome back,{" "}
               <a
                 href={user.html_url}
                 target="_blank"

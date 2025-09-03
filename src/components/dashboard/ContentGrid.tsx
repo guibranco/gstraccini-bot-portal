@@ -1,8 +1,8 @@
-import { ActivityList } from '../ActivityList';
-import { PendingActions } from '../PendingActions';
-import { IssuesList } from '../IssuesList';
-import { PullRequestsList } from '../PullRequestsList';
-import type { PullRequest, Issue, Activity, PendingAction } from '../../types';
+import { ActivityList } from "../ActivityList";
+import { PendingActions } from "../PendingActions";
+import { IssuesList } from "../IssuesList";
+import { PullRequestsList } from "../PullRequestsList";
+import type { PullRequest, Issue, Activity, PendingAction } from "../../types";
 
 interface ContentGridProps {
   pullRequests: PullRequest[];
@@ -11,7 +11,12 @@ interface ContentGridProps {
   pendingActions: PendingAction[];
 }
 
-export function ContentGrid({ pullRequests, issues, activities, pendingActions }: ContentGridProps) {
+export function ContentGrid({
+  pullRequests,
+  issues,
+  activities,
+  pendingActions,
+}: ContentGridProps) {
   return (
     <>
       {/* PRs and Issues Grid */}

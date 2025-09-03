@@ -1,16 +1,19 @@
-import { KeyRound, Eye, EyeOff, CheckCircle2, XCircle } from 'lucide-react';
-import { useState } from 'react';
+import { KeyRound, Eye, EyeOff, CheckCircle2, XCircle } from "lucide-react";
+import { useState } from "react";
 
 interface PasswordSectionProps {
   hasPassword: boolean;
   onSubmit: (e: React.FormEvent) => void;
 }
 
-export function PasswordSection({ hasPassword, onSubmit }: PasswordSectionProps) {
+export function PasswordSection({
+  hasPassword,
+  onSubmit,
+}: PasswordSectionProps) {
   const [showPassword, setShowPassword] = useState(false);
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const validatePassword = (password: string) => {
     const hasMinLength = password.length >= 8;
@@ -25,7 +28,12 @@ export function PasswordSection({ hasPassword, onSubmit }: PasswordSectionProps)
       hasLowerCase,
       hasDigit,
       hasSpecialChar,
-      isValid: hasMinLength && hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar
+      isValid:
+        hasMinLength &&
+        hasUpperCase &&
+        hasLowerCase &&
+        hasDigit &&
+        hasSpecialChar,
     };
   };
 
@@ -37,17 +45,22 @@ export function PasswordSection({ hasPassword, onSubmit }: PasswordSectionProps)
       <div className="p-6">
         <div className="flex items-center space-x-4 mb-6">
           <KeyRound className="w-6 h-6 text-gray-400" />
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Password</h2>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            Password
+          </h2>
         </div>
         <form onSubmit={onSubmit} className="space-y-6">
           {hasPassword && (
             <div>
-              <label htmlFor="current_password" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="current_password"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 Current Password
               </label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   id="current_password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
@@ -68,12 +81,15 @@ export function PasswordSection({ hasPassword, onSubmit }: PasswordSectionProps)
             </div>
           )}
           <div>
-            <label htmlFor="new_password" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            <label
+              htmlFor="new_password"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+            >
               New Password
             </label>
             <div className="relative">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 id="new_password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
@@ -92,35 +108,68 @@ export function PasswordSection({ hasPassword, onSubmit }: PasswordSectionProps)
               </button>
             </div>
             <div className="mt-4 space-y-2">
-              <div className={`flex items-center text-sm ${passwordValidation.hasMinLength ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                {passwordValidation.hasMinLength ? <CheckCircle2 className="inline w-4 h-4 mr-2" /> : <XCircle className="inline w-4 h-4 mr-2" />}
+              <div
+                className={`flex items-center text-sm ${passwordValidation.hasMinLength ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}
+              >
+                {passwordValidation.hasMinLength ? (
+                  <CheckCircle2 className="inline w-4 h-4 mr-2" />
+                ) : (
+                  <XCircle className="inline w-4 h-4 mr-2" />
+                )}
                 At least 8 characters
               </div>
-              <div className={`flex items-center text-sm ${passwordValidation.hasUpperCase ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                {passwordValidation.hasUpperCase ? <CheckCircle2 className="inline w-4 h-4 mr-2" /> : <XCircle className="inline w-4 h-4 mr-2" />}
+              <div
+                className={`flex items-center text-sm ${passwordValidation.hasUpperCase ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}
+              >
+                {passwordValidation.hasUpperCase ? (
+                  <CheckCircle2 className="inline w-4 h-4 mr-2" />
+                ) : (
+                  <XCircle className="inline w-4 h-4 mr-2" />
+                )}
                 At least one uppercase letter
               </div>
-              <div className={`flex items-center text-sm ${passwordValidation.hasLowerCase ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                {passwordValidation.hasLowerCase ? <CheckCircle2 className="inline w-4 h-4 mr-2" /> : <XCircle className="inline w-4 h-4 mr-2" />}
+              <div
+                className={`flex items-center text-sm ${passwordValidation.hasLowerCase ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}
+              >
+                {passwordValidation.hasLowerCase ? (
+                  <CheckCircle2 className="inline w-4 h-4 mr-2" />
+                ) : (
+                  <XCircle className="inline w-4 h-4 mr-2" />
+                )}
                 At least one lowercase letter
               </div>
-              <div className={`flex items-center text-sm ${passwordValidation.hasDigit ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                {passwordValidation.hasDigit ? <CheckCircle2 className="inline w-4 h-4 mr-2" /> : <XCircle className="inline w-4 h-4 mr-2" />}
+              <div
+                className={`flex items-center text-sm ${passwordValidation.hasDigit ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}
+              >
+                {passwordValidation.hasDigit ? (
+                  <CheckCircle2 className="inline w-4 h-4 mr-2" />
+                ) : (
+                  <XCircle className="inline w-4 h-4 mr-2" />
+                )}
                 At least one digit
               </div>
-              <div className={`flex items-center text-sm ${passwordValidation.hasSpecialChar ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                {passwordValidation.hasSpecialChar ? <CheckCircle2 className="inline w-4 h-4 mr-2" /> : <XCircle className="inline w-4 h-4 mr-2" />}
+              <div
+                className={`flex items-center text-sm ${passwordValidation.hasSpecialChar ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}
+              >
+                {passwordValidation.hasSpecialChar ? (
+                  <CheckCircle2 className="inline w-4 h-4 mr-2" />
+                ) : (
+                  <XCircle className="inline w-4 h-4 mr-2" />
+                )}
                 At least one special character
               </div>
             </div>
           </div>
           <div>
-            <label htmlFor="confirm_password" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            <label
+              htmlFor="confirm_password"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+            >
               Confirm New Password
             </label>
             <div className="relative">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 id="confirm_password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}

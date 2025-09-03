@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { useState, useRef, useCallback, useEffect } from "react";
+import { X } from "lucide-react";
 import {
   useFloating,
   useInteractions,
@@ -10,8 +10,8 @@ import {
   FloatingPortal,
   flip,
   shift,
-  offset
-} from '@floating-ui/react';
+  offset,
+} from "@floating-ui/react";
 
 interface TokenOption {
   value: string;
@@ -33,11 +33,11 @@ export function TokenSelect({
   options,
   selectedValues,
   onChange,
-  placeholder = 'Select options...',
-  multiple = true
+  placeholder = "Select options...",
+  multiple = true,
 }: TokenSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { refs, floatingStyles, context } = useFloating({
@@ -59,7 +59,7 @@ export function TokenSelect({
   ]);
 
   const handleTokenRemove = (valueToRemove: string) => {
-    onChange(selectedValues.filter(value => value !== valueToRemove));
+    onChange(selectedValues.filter((value) => value !== valueToRemove));
   };
 
   const handleOptionSelect = (value: string) => {
@@ -74,20 +74,24 @@ export function TokenSelect({
     } else {
       onChange([...selectedValues, value]);
     }
-    setSearchTerm('');
+    setSearchTerm("");
     inputRef.current?.focus();
   };
 
-  const filteredOptions = options.filter(option =>
-    option.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    option.description?.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredOptions = options.filter(
+    (option) =>
+      option.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      option.description?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Backspace' && !searchTerm && selectedValues.length > 0) {
-      handleTokenRemove(selectedValues[selectedValues.length - 1]);
-    }
-  }, [searchTerm, selectedValues]);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Backspace" && !searchTerm && selectedValues.length > 0) {
+        handleTokenRemove(selectedValues[selectedValues.length - 1]);
+      }
+    },
+    [searchTerm, selectedValues],
+  );
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -107,17 +111,19 @@ export function TokenSelect({
         }}
       >
         <div className="flex flex-wrap gap-1">
-          {selectedValues.map(value => {
-            const option = options.find(opt => opt.value === value);
+          {selectedValues.map((value) => {
+            const option = options.find((opt) => opt.value === value);
             if (!option) return null;
-            
+
             return (
               <span
                 key={value}
                 className="inline-flex items-center gap-1 rounded-full px-2 py-1 text-sm"
                 style={{
-                  backgroundColor: option.color ? `#${option.color}20` : '#e5e7eb',
-                  color: option.color ? `#${option.color}` : '#374151',
+                  backgroundColor: option.color
+                    ? `#${option.color}20`
+                    : "#e5e7eb",
+                  color: option.color ? `#${option.color}` : "#374151",
                 }}
               >
                 {option.avatar && (
@@ -148,7 +154,7 @@ export function TokenSelect({
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={selectedValues.length === 0 ? placeholder : ''}
+            placeholder={selectedValues.length === 0 ? placeholder : ""}
           />
         </div>
       </div>
@@ -168,14 +174,14 @@ export function TokenSelect({
                 </div>
               ) : (
                 <div className="p-1">
-                  {filteredOptions.map(option => (
+                  {filteredOptions.map((option) => (
                     <button
                       key={option.value}
                       onClick={() => handleOptionSelect(option.value)}
                       className={`flex w-full items-center gap-2 rounded-md px-4 py-2 text-sm ${
                         selectedValues.includes(option.value)
-                          ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/50 dark:text-blue-200'
-                          : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+                          ? "bg-blue-50 text-blue-600 dark:bg-blue-900/50 dark:text-blue-200"
+                          : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                       }`}
                     >
                       {option.avatar && (
@@ -194,7 +200,9 @@ export function TokenSelect({
                         )}
                       </div>
                       {selectedValues.includes(option.value) && (
-                        <span className="ml-auto text-blue-600 dark:text-blue-400">✓</span>
+                        <span className="ml-auto text-blue-600 dark:text-blue-400">
+                          ✓
+                        </span>
                       )}
                     </button>
                   ))}

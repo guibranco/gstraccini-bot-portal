@@ -1,8 +1,18 @@
-import { useState } from 'react';
-import { Eye, EyeOff, Trash2, CheckCircle, XCircle, Clock, Terminal, Play, History } from 'lucide-react';
-import type { Integration, Provider } from '../../types';
-import { IntegrationHistoryModal } from './IntegrationHistoryModal';
-import { providerCommands, providerActions } from './integrationData';
+import { useState } from "react";
+import {
+  Eye,
+  EyeOff,
+  Trash2,
+  CheckCircle,
+  XCircle,
+  Clock,
+  Terminal,
+  Play,
+  History,
+} from "lucide-react";
+import type { Integration, Provider } from "../../types";
+import { IntegrationHistoryModal } from "./IntegrationHistoryModal";
+import { providerCommands, providerActions } from "./integrationData";
 
 interface IntegrationsListProps {
   integrations: Integration[];
@@ -17,25 +27,27 @@ export function IntegrationsList({
   providers,
   showApiKey,
   onToggleApiKeyVisibility,
-  onRemove
+  onRemove,
 }: IntegrationsListProps) {
-  const [selectedIntegration, setSelectedIntegration] = useState<string | null>(null);
+  const [selectedIntegration, setSelectedIntegration] = useState<string | null>(
+    null,
+  );
 
   const maskApiKey = (key: string) => {
     const visibleLength = 4;
-    const maskedLength = key.length - (visibleLength * 2);
-    return `${key.slice(0, visibleLength)}${'*'.repeat(maskedLength)}${key.slice(-visibleLength)}`;
+    const maskedLength = key.length - visibleLength * 2;
+    return `${key.slice(0, visibleLength)}${"*".repeat(maskedLength)}${key.slice(-visibleLength)}`;
   };
 
-  const getStatusIcon = (status: Integration['status']) => {
+  const getStatusIcon = (status: Integration["status"]) => {
     switch (status) {
-      case 'Active':
+      case "Active":
         return <CheckCircle className="w-5 h-5 text-green-500" />;
-      case 'Inactive':
+      case "Inactive":
         return <XCircle className="w-5 h-5 text-gray-500" />;
-      case 'Error':
+      case "Error":
         return <XCircle className="w-5 h-5 text-red-500" />;
-      case 'Validating':
+      case "Validating":
         return <Clock className="w-5 h-5 text-yellow-500" />;
     }
   };
@@ -43,10 +55,15 @@ export function IntegrationsList({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg">
       <div className="p-6">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Current Integrations</h2>
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+          Current Integrations
+        </h2>
         <div className="space-y-8">
           {integrations.map((integration) => (
-            <div key={integration.provider} className="border-b border-gray-200 dark:border-gray-700 last:border-b-0 pb-8 last:pb-0">
+            <div
+              key={integration.provider}
+              className="border-b border-gray-200 dark:border-gray-700 last:border-b-0 pb-8 last:pb-0"
+            >
               {/* Integration Header */}
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-3">
@@ -83,15 +100,21 @@ export function IntegrationsList({
               {/* Usage Info */}
               <div className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Last Usage</div>
+                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                    Last Usage
+                  </div>
                   <div className="text-gray-900 dark:text-white">
-                    {integration.lastUsage === 'N/A' ? 'Never' : new Date(integration.lastUsage).toLocaleString()}
+                    {integration.lastUsage === "N/A"
+                      ? "Never"
+                      : new Date(integration.lastUsage).toLocaleString()}
                   </div>
                 </div>
                 <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Last Error</div>
+                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                    Last Error
+                  </div>
                   <div className="text-gray-900 dark:text-white">
-                    {integration.lastError || 'None'}
+                    {integration.lastError || "None"}
                   </div>
                 </div>
                 <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
@@ -110,10 +133,14 @@ export function IntegrationsList({
                 <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-300">
                   <span className="font-medium">API Key:</span>
                   <code className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
-                    {showApiKey[integration.provider] ? integration.apiKey : maskApiKey(integration.apiKey)}
+                    {showApiKey[integration.provider]
+                      ? integration.apiKey
+                      : maskApiKey(integration.apiKey)}
                   </code>
                   <button
-                    onClick={() => onToggleApiKeyVisibility(integration.provider)}
+                    onClick={() =>
+                      onToggleApiKeyVisibility(integration.provider)
+                    }
                     className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                   >
                     {showApiKey[integration.provider] ? (
@@ -155,22 +182,24 @@ export function IntegrationsList({
                   Available Actions
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {providerActions[integration.provider]?.map((action, index) => (
-                    <div
-                      key={index}
-                      className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3"
-                    >
-                      <h4 className="font-medium text-gray-900 dark:text-white">
-                        {action.name}
-                      </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                        {action.description}
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                        Triggers on: {action.event}
-                      </p>
-                    </div>
-                  ))}
+                  {providerActions[integration.provider]?.map(
+                    (action, index) => (
+                      <div
+                        key={index}
+                        className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3"
+                      >
+                        <h4 className="font-medium text-gray-900 dark:text-white">
+                          {action.name}
+                        </h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                          {action.description}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                          Triggers on: {action.event}
+                        </p>
+                      </div>
+                    ),
+                  )}
                 </div>
               </div>
             </div>
@@ -188,7 +217,10 @@ export function IntegrationsList({
       {selectedIntegration && (
         <IntegrationHistoryModal
           provider={selectedIntegration}
-          history={integrations.find(i => i.provider === selectedIntegration)?.usageHistory || []}
+          history={
+            integrations.find((i) => i.provider === selectedIntegration)
+              ?.usageHistory || []
+          }
           onClose={() => setSelectedIntegration(null)}
         />
       )}

@@ -1,11 +1,13 @@
-import { Shield, CheckCircle, XCircle } from 'lucide-react';
-import type { BranchProtection } from '../../types';
+import { Shield, CheckCircle, XCircle } from "lucide-react";
+import type { BranchProtection } from "../../types";
 
 interface BranchProtectionSectionProps {
   protectionRules: BranchProtection[];
 }
 
-export function BranchProtectionSection({ protectionRules = [] }: BranchProtectionSectionProps) {
+export function BranchProtectionSection({
+  protectionRules = [],
+}: BranchProtectionSectionProps) {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg">
       <div className="p-6">

@@ -1,36 +1,36 @@
-import { useState, useEffect } from 'react';
-import { mockNotifications } from '../mockData';
-import { NotificationFilters } from '../components/notifications/NotificationFilters';
-import { NotificationList } from '../components/notifications/NotificationList';
-import type { Notification } from '../types';
+import { useState, useEffect } from "react";
+import { mockNotifications } from "../mockData";
+import { NotificationFilters } from "../components/notifications/NotificationFilters";
+import { NotificationList } from "../components/notifications/NotificationList";
+import type { Notification } from "../types";
 
 const typeOptions = [
-  { value: 'pr_review', label: 'Pull Request Review', color: '3b82f6' },
-  { value: 'issue_mention', label: 'Issue Mention', color: 'f59e0b' },
-  { value: 'pr_merged', label: 'Pull Request Merged', color: '8b5cf6' },
-  { value: 'security_alert', label: 'Security Alert', color: 'ef4444' },
-  { value: 'issue_assigned', label: 'Issue Assigned', color: '10b981' },
-  { value: 'pr_changes', label: 'Pull Request Changes', color: 'f97316' }
+  { value: "pr_review", label: "Pull Request Review", color: "3b82f6" },
+  { value: "issue_mention", label: "Issue Mention", color: "f59e0b" },
+  { value: "pr_merged", label: "Pull Request Merged", color: "8b5cf6" },
+  { value: "security_alert", label: "Security Alert", color: "ef4444" },
+  { value: "issue_assigned", label: "Issue Assigned", color: "10b981" },
+  { value: "pr_changes", label: "Pull Request Changes", color: "f97316" },
 ];
 
 const priorityOptions = [
-  { value: 'high', label: 'High Priority', color: 'ef4444' },
-  { value: 'medium', label: 'Medium Priority', color: 'f59e0b' },
-  { value: 'low', label: 'Low Priority', color: '10b981' }
+  { value: "high", label: "High Priority", color: "ef4444" },
+  { value: "medium", label: "Medium Priority", color: "f59e0b" },
+  { value: "low", label: "Low Priority", color: "10b981" },
 ];
 
 const systemSender = {
-  value: 'system',
-  label: 'System',
-  avatar: 'https://github.com/github.png',
-  description: 'System notifications'
+  value: "system",
+  label: "System",
+  avatar: "https://github.com/github.png",
+  description: "System notifications",
 };
 
 const botSender = {
-  value: 'bot',
-  label: 'GStraccini Bot',
-  avatar: 'https://github.com/gstraccini.png',
-  description: 'Bot notifications'
+  value: "bot",
+  label: "GStraccini Bot",
+  avatar: "https://github.com/gstraccini.png",
+  description: "Bot notifications",
 };
 
 export function Notifications() {
@@ -41,12 +41,14 @@ export function Notifications() {
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>([]);
   const [selectedSenders, setSelectedSenders] = useState<string[]>([]);
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
-  const [senderOptions, setSenderOptions] = useState<Array<{
-    value: string;
-    label: string;
-    avatar?: string;
-    description?: string;
-  }>>([systemSender, botSender]);
+  const [senderOptions, setSenderOptions] = useState<
+    Array<{
+      value: string;
+      label: string;
+      avatar?: string;
+      description?: string;
+    }>
+  >([systemSender, botSender]);
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -56,19 +58,19 @@ export function Notifications() {
 
         // Extract unique senders from notifications
         const uniqueSenders = Array.from(
-          new Set(fetchedNotifications.map(n => n.sender))
-        ).map(sender => ({
+          new Set(fetchedNotifications.map((n) => n.sender)),
+        ).map((sender) => ({
           value: sender.login,
           label: sender.name || sender.login,
           avatar: sender.avatar_url,
-          description: `@${sender.login}`
+          description: `@${sender.login}`,
         }));
 
         // Combine system, bot, and user senders
         setSenderOptions([systemSender, botSender, ...uniqueSenders]);
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching notifications:', error);
+        console.error("Error fetching notifications:", error);
         setIsLoading(false);
       }
     };
@@ -76,29 +78,38 @@ export function Notifications() {
     fetchNotifications();
   }, []);
 
-  const filteredNotifications = notifications.filter(notification => {
+  const filteredNotifications = notifications.filter((notification) => {
     if (showUnreadOnly && notification.read) return false;
-    if (selectedTypes.length > 0 && !selectedTypes.includes(notification.type)) return false;
-    if (selectedPriorities.length > 0 && !selectedPriorities.includes(notification.priority || '')) return false;
+    if (selectedTypes.length > 0 && !selectedTypes.includes(notification.type))
+      return false;
+    if (
+      selectedPriorities.length > 0 &&
+      !selectedPriorities.includes(notification.priority || "")
+    )
+      return false;
     if (selectedSenders.length > 0) {
-      const isSystem = notification.type === 'security_alert' && selectedSenders.includes('system');
-      const isBot = notification.sender.login.includes('[bot]') && selectedSenders.includes('bot');
+      const isSystem =
+        notification.type === "security_alert" &&
+        selectedSenders.includes("system");
+      const isBot =
+        notification.sender.login.includes("[bot]") &&
+        selectedSenders.includes("bot");
       const isUser = selectedSenders.includes(notification.sender.login);
       if (!isSystem && !isBot && !isUser) return false;
     }
     return true;
   });
 
-  const unreadCount = notifications.filter(n => !n.read).length;
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   const markAsRead = (id: string) => {
-    setNotifications(prev =>
-      prev.map(n => (n.id === id ? { ...n, read: true } : n))
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
     );
   };
 
   const markAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
   };
 
   const clearFilters = () => {

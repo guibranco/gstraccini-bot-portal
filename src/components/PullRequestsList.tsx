@@ -1,42 +1,50 @@
-import { PullRequest } from '../types';
-import { GitPullRequest, CheckCircle, XCircle, Clock, AlertCircle, ArrowRight, HelpCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { PullRequest } from "../types";
+import {
+  GitPullRequest,
+  CheckCircle,
+  XCircle,
+  Clock,
+  AlertCircle,
+  ArrowRight,
+  HelpCircle,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface PullRequestsListProps {
   pullRequests: PullRequest[];
 }
 
-const getStateIcon = (state: PullRequest['state']) => {
+const getStateIcon = (state: PullRequest["state"]) => {
   switch (state) {
-    case 'success':
+    case "success":
       return <CheckCircle className="w-5 h-5 text-green-500" />;
-    case 'failure':
+    case "failure":
       return <XCircle className="w-5 h-5 text-red-500" />;
-    case 'pending':
+    case "pending":
       return <Clock className="w-5 h-5 text-yellow-500" />;
-    case 'error':
+    case "error":
       return <AlertCircle className="w-5 h-5 text-red-500" />;
-    case 'skipped':
+    case "skipped":
       return <ArrowRight className="w-5 h-5 text-gray-500" />;
     default:
       return <HelpCircle className="w-5 h-5 text-gray-400" />;
   }
 };
 
-const getStateClass = (state: PullRequest['state']) => {
+const getStateClass = (state: PullRequest["state"]) => {
   switch (state) {
-    case 'success':
-      return 'bg-green-100 text-green-800';
-    case 'failure':
-      return 'bg-red-100 text-red-800';
-    case 'pending':
-      return 'bg-yellow-100 text-yellow-800';
-    case 'error':
-      return 'bg-red-100 text-red-800';
-    case 'skipped':
-      return 'bg-gray-100 text-gray-800';
+    case "success":
+      return "bg-green-100 text-green-800";
+    case "failure":
+      return "bg-red-100 text-red-800";
+    case "pending":
+      return "bg-yellow-100 text-yellow-800";
+    case "error":
+      return "bg-red-100 text-red-800";
+    case "skipped":
+      return "bg-gray-100 text-gray-800";
     default:
-      return 'bg-gray-100 text-gray-800';
+      return "bg-gray-100 text-gray-800";
   }
 };
 
@@ -44,14 +52,18 @@ export function PullRequestsList({ pullRequests }: PullRequestsListProps) {
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-semibold text-gray-800">Assigned Pull Requests</h3>
+        <h3 className="text-xl font-semibold text-gray-800">
+          Assigned Pull Requests
+        </h3>
         <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
           {pullRequests.length}
         </span>
       </div>
       <div className="space-y-4">
         {pullRequests.length === 0 ? (
-          <p className="text-gray-500 text-center py-4">No pull requests found</p>
+          <p className="text-gray-500 text-center py-4">
+            No pull requests found
+          </p>
         ) : (
           pullRequests.map((pr, index) => (
             <div key={index} className="p-4 bg-gray-50 rounded-lg">
@@ -74,13 +86,15 @@ export function PullRequestsList({ pullRequests }: PullRequestsListProps) {
                         {pr.sender.name || pr.sender.login}
                       </a>
                     </div>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 ${getStateClass(pr.state)}`}>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 ${getStateClass(pr.state)}`}
+                    >
                       {getStateIcon(pr.state)}
                       {pr.state}
                     </span>
                   </div>
                   <Link
-                    to={`/pull-requests/${pr.url.split('/').pop()}`}
+                    to={`/pull-requests/${pr.url.split("/").pop()}`}
                     className="text-blue-600 hover:text-blue-800 font-medium block mt-2"
                   >
                     {pr.title}
@@ -94,11 +108,11 @@ export function PullRequestsList({ pullRequests }: PullRequestsListProps) {
                     </Link>
                     <span className="text-gray-400 mx-2">•</span>
                     <span className="text-gray-500">
-                      {new Date(pr.created_at).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
+                      {new Date(pr.created_at).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
                       })}
                     </span>
                   </div>
@@ -110,7 +124,7 @@ export function PullRequestsList({ pullRequests }: PullRequestsListProps) {
                           className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium"
                           style={{
                             backgroundColor: `#${label.color}`,
-                            color: luminance(label.color)
+                            color: luminance(label.color),
                           }}
                           title={label.description}
                         >
@@ -131,11 +145,11 @@ export function PullRequestsList({ pullRequests }: PullRequestsListProps) {
 
 function luminance(color: string): string {
   if (!/^[0-9A-Fa-f]{6}$/.test(color)) {
-    throw new Error('Invalid color format. Expected 6-digit hex color.');
+    throw new Error("Invalid color format. Expected 6-digit hex color.");
   }
   const red = parseInt(color.slice(0, 2), 16);
   const green = parseInt(color.slice(2, 2), 16);
   const blue = parseInt(color.slice(4, 2), 16);
-  const yiq = ((red * 299) + (green * 587) + (blue * 114)) / 1000;
-  return yiq >= 128 ? '#000' : '#fff';
+  const yiq = (red * 299 + green * 587 + blue * 114) / 1000;
+  return yiq >= 128 ? "#000" : "#fff";
 }

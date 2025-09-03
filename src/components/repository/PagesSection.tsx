@@ -1,5 +1,5 @@
-import { Globe, ExternalLink } from 'lucide-react';
-import type { Pages } from '../../types';
+import { Globe, ExternalLink } from "lucide-react";
+import type { Pages } from "../../types";
 
 interface PagesSectionProps {
   pages: Pages;
@@ -24,37 +24,45 @@ export function PagesSection({ pages }: PagesSectionProps) {
               {pages.url}
               <ExternalLink className="w-4 h-4 ml-1" />
             </a>
-            <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-              pages.status === 'active'
-                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-            }`}>
+            <span
+              className={`px-2 py-1 text-xs font-medium rounded-full ${
+                pages.status === "active"
+                  ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                  : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+              }`}
+            >
               {pages.status}
             </span>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Environment</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Environment
+              </p>
               <p className="font-medium text-gray-900 dark:text-white">
                 {pages.environment}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Protection</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Protection
+              </p>
               <p className="font-medium text-gray-900 dark:text-white">
-                {pages.protected ? 'Protected' : 'Not protected'}
+                {pages.protected ? "Protected" : "Not protected"}
               </p>
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400">HTTPS</p>
               <p className="font-medium text-gray-900 dark:text-white">
-                {pages.https_enforced ? 'Enforced' : 'Not enforced'}
+                {pages.https_enforced ? "Enforced" : "Not enforced"}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Custom 404</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Custom 404
+              </p>
               <p className="font-medium text-gray-900 dark:text-white">
-                {pages.custom_404 ? 'Yes' : 'No'}
+                {pages.custom_404 ? "Yes" : "No"}
               </p>
             </div>
           </div>

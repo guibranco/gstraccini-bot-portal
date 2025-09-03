@@ -1,12 +1,15 @@
-import { GitBranch, Shield } from 'lucide-react';
-import type { Branch } from '../../types';
+import { GitBranch, Shield } from "lucide-react";
+import type { Branch } from "../../types";
 
 interface BranchesSectionProps {
   branches: Branch[];
   defaultBranch: string;
 }
 
-export function BranchesSection({ branches = [], defaultBranch }: BranchesSectionProps) {
+export function BranchesSection({
+  branches = [],
+  defaultBranch,
+}: BranchesSectionProps) {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg">
       <div className="p-6">
@@ -20,7 +23,7 @@ export function BranchesSection({ branches = [], defaultBranch }: BranchesSectio
           </span>
         </div>
         <div className="space-y-3">
-          {branches.map(branch => (
+          {branches.map((branch) => (
             <div
               key={branch.name}
               className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
