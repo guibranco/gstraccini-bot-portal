@@ -1,8 +1,8 @@
-import { Wrench, ListTodo, Bug } from 'lucide-react';
+import { Wrench, ListTodo, Bug } from "lucide-react";
 
 interface Badge {
   text: string;
-  icon: 'wrench' | 'tasks' | 'bug';
+  icon: "wrench" | "tasks" | "bug";
 }
 
 interface SettingToggleProps {
@@ -17,13 +17,13 @@ interface SettingToggleProps {
   forceActive?: boolean;
 }
 
-const BadgeIcon = ({ icon }: { icon: Badge['icon'] }) => {
+const BadgeIcon = ({ icon }: { icon: Badge["icon"] }) => {
   switch (icon) {
-    case 'wrench':
+    case "wrench":
       return <Wrench className="w-3 h-3" />;
-    case 'tasks':
+    case "tasks":
       return <ListTodo className="w-3 h-3" />;
-    case 'bug':
+    case "bug":
       return <Bug className="w-3 h-3" />;
   }
 };
@@ -37,13 +37,17 @@ export function SettingToggle({
   note,
   badges,
   disabled = false,
-  forceActive = false
+  forceActive = false,
 }: SettingToggleProps) {
   return (
-    <div className={`flex items-start space-x-4 ${disabled ? 'opacity-50' : ''}`}>
+    <div
+      className={`flex items-start space-x-4 ${disabled ? "opacity-50" : ""}`}
+    >
       <div className="flex-1">
         <label htmlFor={id} className="flex items-center space-x-2">
-          <span className="font-medium text-gray-900 dark:text-white">{label}</span>
+          <span className="font-medium text-gray-900 dark:text-white">
+            {label}
+          </span>
           {badges && (
             <div className="flex items-center space-x-2">
               {badges.map((badge) => (
@@ -58,9 +62,13 @@ export function SettingToggle({
             </div>
           )}
         </label>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{description}</p>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          {description}
+        </p>
         {note && (
-          <p className="mt-1 text-sm text-gray-400 dark:text-gray-500 italic">{note}</p>
+          <p className="mt-1 text-sm text-gray-400 dark:text-gray-500 italic">
+            {note}
+          </p>
         )}
       </div>
       <div className="flex-shrink-0">
@@ -73,9 +81,13 @@ export function SettingToggle({
             onChange={(e) => onChange(e.target.checked)}
             disabled={disabled}
           />
-          <div className={`w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 ${
-            forceActive ? 'peer-checked:bg-green-600' : 'peer-checked:bg-blue-600'
-          }`}></div>
+          <div
+            className={`w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 ${
+              forceActive
+                ? "peer-checked:bg-green-600"
+                : "peer-checked:bg-blue-600"
+            }`}
+          ></div>
         </label>
       </div>
     </div>

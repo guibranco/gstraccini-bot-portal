@@ -1,44 +1,50 @@
-import React from 'react';
-import { 
-  GitPullRequest, 
-  CheckCircle2, 
-  Package, 
-  Code2, 
-  Bug, 
-  Rocket 
-} from 'lucide-react';
+import React from "react";
+import {
+  GitPullRequest,
+  CheckCircle2,
+  Package,
+  Code2,
+  Bug,
+  Rocket,
+} from "lucide-react";
 
 const features = [
   {
     icon: <GitPullRequest className="h-6 w-6" />,
     title: "Automated PRs",
-    description: "Auto-label pull requests based on size and impact, streamlining your review process."
+    description:
+      "Auto-label pull requests based on size and impact, streamlining your review process.",
   },
   {
     icon: <CheckCircle2 className="h-6 w-6" />,
     title: "PR Validation",
-    description: "Enforce checklist completion and maintain high-quality documentation standards."
+    description:
+      "Enforce checklist completion and maintain high-quality documentation standards.",
   },
   {
     icon: <Package className="h-6 w-6" />,
     title: "NPM Workflows",
-    description: "Automate distribution file generation, Prettier formatting, and dependency updates."
+    description:
+      "Automate distribution file generation, Prettier formatting, and dependency updates.",
   },
   {
     icon: <Code2 className="h-6 w-6" />,
     title: ".NET Integration",
-    description: "Run linters, CSharpier, and format commands directly from pull requests."
+    description:
+      "Run linters, CSharpier, and format commands directly from pull requests.",
   },
   {
     icon: <Bug className="h-6 w-6" />,
     title: "AI-Powered Issues",
-    description: "Generate issue descriptions using OpenAI, Llama, or Claude for better context."
+    description:
+      "Generate issue descriptions using OpenAI, Llama, or Claude for better context.",
   },
   {
     icon: <Rocket className="h-6 w-6" />,
     title: "CI/CD Pipeline",
-    description: "Seamless integration with GitHub Actions, GitVersion, and Appveyor for version control."
-  }
+    description:
+      "Seamless integration with GitHub Actions, GitVersion, and Appveyor for version control.",
+  },
 ];
 
 export default function FeaturesGrid() {
@@ -61,7 +67,9 @@ export default function FeaturesGrid() {
                 <div className="inline-flex items-center justify-center p-2 bg-blue-100 rounded-lg text-blue-600 mb-4">
                   {feature.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
                 <p className="text-gray-600">{feature.description}</p>
               </div>
             </div>

@@ -1,151 +1,160 @@
-import React from 'react';
-import { Terminal, ExternalLink } from 'lucide-react';
+import React from "react";
+import { Terminal, ExternalLink } from "lucide-react";
 
 const commands = [
   {
     command: "@gstraccini help",
     description: "Shows the help message with available commands.",
     docs: "https://docs.gstraccini.bot/commands/help",
-    places: "All"
+    places: "All",
   },
   {
     command: "@gstraccini add project <projectPath>",
-    description: "Adds a project to the solution file (only for .NET projects).",
+    description:
+      "Adds a project to the solution file (only for .NET projects).",
     docs: "https://docs.gstraccini.bot/commands/add-project",
-    places: "Portal"
+    places: "Portal",
   },
   {
     command: "@gstraccini appveyor build <type>",
-    description: "Runs the AppVeyor build for the target commit and/or pull request.",
+    description:
+      "Runs the AppVeyor build for the target commit and/or pull request.",
     docs: "https://docs.gstraccini.bot/commands/appveyor-build",
-    places: "Pull Requests"
+    places: "Pull Requests",
   },
   {
     command: "@gstraccini appveyor bump version <component>",
     description: "Bumps the CI version in AppVeyor.",
     docs: "https://docs.gstraccini.bot/commands/appveyor-bump-version",
-    places: "Issues + Pull Requests"
+    places: "Issues + Pull Requests",
   },
   {
     command: "@gstraccini appveyor register",
     description: "Registers the repository in AppVeyor.",
     docs: "https://docs.gstraccini.bot/commands/appveyor-register",
-    places: "Portal"
+    places: "Portal",
   },
   {
     command: "@gstraccini appveyor reset",
     description: "Resets the AppVeyor build number for the target repository.",
     docs: "https://docs.gstraccini.bot/commands/appveyor-reset",
-    places: "Pull Requests"
+    places: "Pull Requests",
   },
   {
     command: "@gstraccini bump version <version> <project>",
     description: "Bumps the .NET version in .csproj files.",
     docs: "https://docs.gstraccini.bot/commands/bump-version",
-    places: "Portal"
+    places: "Portal",
   },
   {
     command: "@gstraccini cargo clippy",
-    description: "Formats the Rust code using Cargo Clippy (only for Rust projects).",
+    description:
+      "Formats the Rust code using Cargo Clippy (only for Rust projects).",
     docs: "https://docs.gstraccini.bot/commands/cargo-clippy",
-    places: "All"
+    places: "All",
   },
   {
     command: "@gstraccini change runner <runner> <workflow> <jobs>",
     description: "Changes the GitHub action runner in a workflow file (.yml).",
     docs: "https://docs.gstraccini.bot/commands/change-runner",
-    places: "Issues + Pull Requests"
+    places: "Issues + Pull Requests",
   },
   {
     command: "@gstraccini codacy bypass",
-    description: "Bypasses the Codacy analysis for the target commit and/or pull request.",
+    description:
+      "Bypasses the Codacy analysis for the target commit and/or pull request.",
     docs: "https://docs.gstraccini.bot/commands/codacy-bypass",
-    places: "Pull Requests"
+    places: "Pull Requests",
   },
   {
     command: "@gstraccini codacy reanalyze commit",
     description: "Reanalyzes the Codacy last commit in a pull request.",
     docs: "https://docs.gstraccini.bot/commands/codacy-reanalyze-commit",
-    places: "Pull Requests"
+    places: "Pull Requests",
   },
   {
     command: "@gstraccini codeclimate bypass",
-    description: "Bypasses the CodeClimate analysis for the target commit and/or pull request.",
+    description:
+      "Bypasses the CodeClimate analysis for the target commit and/or pull request.",
     docs: "https://docs.gstraccini.bot/commands/codeclimate-bypass",
-    places: "Pull Requests"
+    places: "Pull Requests",
   },
   {
     command: "@gstraccini copy labels <repository>",
     description: "Copies the labels from another repository.",
     docs: "https://docs.gstraccini.bot/commands/copy-labels",
-    places: "Issues"
+    places: "Issues",
   },
   {
     command: "@gstraccini copy issue <repository>",
     description: "Copies an issue from one repository to another.",
     docs: "https://docs.gstraccini.bot/commands/copy-issue",
-    places: "Issues"
+    places: "Issues",
   },
   {
     command: "@gstraccini create labels <style> <categories>",
     description: "Creates the default labels in the repository.",
     docs: "https://docs.gstraccini.bot/commands/create-labels",
-    places: "Issues"
+    places: "Issues",
   },
   {
     command: "@gstraccini csharpier",
-    description: "Formats the C# code using CSharpier (only for .NET projects).",
+    description:
+      "Formats the C# code using CSharpier (only for .NET projects).",
     docs: "https://docs.gstraccini.bot/commands/csharpier",
-    places: "All"
+    places: "All",
   },
   {
     command: "@gstraccini fix csproj",
-    description: "Updates the .csproj file with the packages.config version of NuGet packages (only for .NET Framework projects).",
+    description:
+      "Updates the .csproj file with the packages.config version of NuGet packages (only for .NET Framework projects).",
     docs: "https://docs.gstraccini.bot/commands/fix-csproj",
-    places: "Portal"
+    places: "Portal",
   },
   {
     command: "@gstraccini npm check updates",
-    description: "Updates dependencies in a package.json and package-lock.json.",
+    description:
+      "Updates dependencies in a package.json and package-lock.json.",
     docs: "https://docs.gstraccini.bot/commands/npm-check-updates",
-    places: "Portal"
+    places: "Portal",
   },
   {
     command: "@gstraccini npm dist",
     description: "Generates or regenerates the dist files.",
     docs: "https://docs.gstraccini.bot/commands/npm-dist",
-    places: "Portal"
+    places: "Portal",
   },
   {
     command: "@gstraccini prettier",
     description: "Formats the code using Prettier.",
     docs: "https://docs.gstraccini.bot/commands/prettier",
-    places: "All"
+    places: "All",
   },
   {
     command: "@gstraccini rerun checks <conclusion>",
     description: "Reruns the checks in the target pull request.",
     docs: "https://docs.gstraccini.bot/commands/rerun-checks",
-    places: "Pull Requests"
+    places: "Pull Requests",
   },
   {
     command: "@gstraccini rerun workflows <conclusion>",
     description: "Reruns the workflows (actions) in the target pull request.",
     docs: "https://docs.gstraccini.bot/commands/rerun-workflows",
-    places: "Pull Requests"
+    places: "Pull Requests",
   },
   {
     command: "@gstraccini review",
     description: "Enables review for the target pull request.",
     docs: "https://docs.gstraccini.bot/commands/review",
-    places: "Pull Requests"
+    places: "Pull Requests",
   },
   {
     command: "@gstraccini update snapshot",
-    description: "Updates test snapshots (npm test -- -u) (only for Node.js projects).",
+    description:
+      "Updates test snapshots (npm test -- -u) (only for Node.js projects).",
     docs: "https://docs.gstraccini.bot/commands/update-snapshot",
-    places: "Portal"
-  }
+    places: "Portal",
+  },
 ];
 
 export default function CommandsSection() {
@@ -162,17 +171,19 @@ export default function CommandsSection() {
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {commands.map((command, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200"
             >
               <Terminal className="h-6 w-6 text-blue-600 mb-4" />
               <code className="text-sm font-mono text-blue-600 mb-3 block">
                 {command.command}
               </code>
-              <p className="text-gray-600 text-sm mb-4">{command.description}</p>
+              <p className="text-gray-600 text-sm mb-4">
+                {command.description}
+              </p>
               <div className="flex items-center justify-between">
-                <a 
+                <a
                   href={command.docs}
                   target="_blank"
                   rel="noopener noreferrer"

@@ -1,5 +1,5 @@
-import { Issue } from '../types';
-import { CircleDot } from 'lucide-react';
+import { Issue } from "../types";
+import { CircleDot } from "lucide-react";
 
 interface IssuesListProps {
   issues: Issue[];
@@ -57,11 +57,11 @@ export function IssuesList({ issues }: IssuesListProps) {
                     </a>
                     <span className="text-gray-400 mx-2">•</span>
                     <span className="text-gray-500">
-                      {new Date(issue.created_at).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
+                      {new Date(issue.created_at).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
                       })}
                     </span>
                   </div>
@@ -73,7 +73,7 @@ export function IssuesList({ issues }: IssuesListProps) {
                           className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium"
                           style={{
                             backgroundColor: `#${label.color}`,
-                            color: luminance(label.color)
+                            color: luminance(label.color),
                           }}
                           title={label.description}
                         >
@@ -94,11 +94,11 @@ export function IssuesList({ issues }: IssuesListProps) {
 
 function luminance(color: string): string {
   if (!/^[0-9A-Fa-f]{6}$/.test(color)) {
-    throw new Error('Invalid color format. Expected 6-digit hex color.');
+    throw new Error("Invalid color format. Expected 6-digit hex color.");
   }
   const red = parseInt(color.slice(0, 2), 16);
   const green = parseInt(color.slice(2, 2), 16);
   const blue = parseInt(color.slice(4, 2), 16);
-  const yiq = ((red * 299) + (green * 587) + (blue * 114)) / 1000;
-  return yiq >= 128 ? '#000' : '#fff';
+  const yiq = (red * 299 + green * 587 + blue * 114) / 1000;
+  return yiq >= 128 ? "#000" : "#fff";
 }

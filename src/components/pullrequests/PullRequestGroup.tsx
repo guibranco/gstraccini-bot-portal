@@ -1,6 +1,6 @@
-import { ChevronDown } from 'lucide-react';
-import { PullRequestItem } from './PullRequestItem';
-import type { PullRequest } from '../../types';
+import { ChevronDown } from "lucide-react";
+import { PullRequestItem } from "./PullRequestItem";
+import type { PullRequest } from "../../types";
 
 interface PullRequestGroupProps {
   owner: string;
@@ -13,7 +13,7 @@ export function PullRequestGroup({
   owner,
   pullRequests,
   isExpanded,
-  onToggle
+  onToggle,
 }: PullRequestGroupProps) {
   return (
     <div className="border-b border-gray-200 dark:border-gray-700 last:border-0">
@@ -29,7 +29,7 @@ export function PullRequestGroup({
         </h2>
         <ChevronDown
           className={`w-5 h-5 text-gray-500 transition-transform ${
-            isExpanded ? 'transform rotate-180' : ''
+            isExpanded ? "transform rotate-180" : ""
           }`}
         />
       </button>

@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
-import { Github, KeyRound, Mail, Fingerprint, Smartphone, ArrowRight, Bot } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate, useLocation } from 'react-router-dom';
-import LandingHeader from '../components/LandingHeader';
-import LandingFooter from '../components/LandingFooter';
+import React, { useState } from "react";
+import {
+  Github,
+  KeyRound,
+  Mail,
+  Fingerprint,
+  Smartphone,
+  ArrowRight,
+  Bot,
+} from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate, useLocation } from "react-router-dom";
+import LandingHeader from "../components/LandingHeader";
+import LandingFooter from "../components/LandingFooter";
 
 // Mock user data
 const MOCK_USERS = {
-  'test@example.com': {
-    password: 'password123',
-    twoFactorMethods: ['fido', 'authenticator', 'email', 'recovery']
+  "test@example.com": {
+    password: "password123",
+    twoFactorMethods: ["fido", "authenticator", "email", "recovery"],
   },
-  'admin@example.com': {
-    password: 'admin123',
-    twoFactorMethods: ['authenticator', 'email']
-  }
+  "admin@example.com": {
+    password: "admin123",
+    twoFactorMethods: ["authenticator", "email"],
+  },
 };
 
 // Mock 2FA verification codes
 const MOCK_2FA_CODES = {
-  authenticator: '123456',
-  email: '654321',
-  recovery: 'R123456789',
+  authenticator: "123456",
+  email: "654321",
+  recovery: "R123456789",
 };
 
 interface TwoFactorModalProps {
@@ -30,19 +38,23 @@ interface TwoFactorModalProps {
   onVerify: (code: string) => void;
 }
 
-const TwoFactorVerificationModal: React.FC<TwoFactorModalProps> = ({ method, onClose, onVerify }) => {
-  const [code, setCode] = useState('');
-  const [error, setError] = useState('');
+const TwoFactorVerificationModal: React.FC<TwoFactorModalProps> = ({
+  method,
+  onClose,
+  onVerify,
+}) => {
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     // Mock verification
     if (MOCK_2FA_CODES[method as keyof typeof MOCK_2FA_CODES] === code) {
       onVerify(code);
     } else {
-      setError('Invalid verification code');
+      setError("Invalid verification code");
     }
   };
 
@@ -52,11 +64,15 @@ const TwoFactorVerificationModal: React.FC<TwoFactorModalProps> = ({ method, onC
         <h2 className="text-2xl font-bold mb-6">Enter Verification Code</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="code" className="block text-sm font-medium text-gray-700 mb-2">
-              {method === 'authenticator' && 'Enter 6-digit code from your authenticator app'}
-              {method === 'email' && 'Enter 6-digit code sent to your email'}
-              {method === 'recovery' && 'Enter your 10-digit recovery code'}
-              {method === 'fido' && 'Verify with your security key'}
+            <label
+              htmlFor="code"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              {method === "authenticator" &&
+                "Enter 6-digit code from your authenticator app"}
+              {method === "email" && "Enter 6-digit code sent to your email"}
+              {method === "recovery" && "Enter your 10-digit recovery code"}
+              {method === "fido" && "Verify with your security key"}
             </label>
             <input
               type="text"
@@ -95,15 +111,19 @@ interface TwoFactorMethodsModalProps {
   onSelect: (method: string) => void;
 }
 
-const TwoFactorMethodsModal: React.FC<TwoFactorMethodsModalProps> = ({ methods, onClose, onSelect }) => {
+const TwoFactorMethodsModal: React.FC<TwoFactorMethodsModalProps> = ({
+  methods,
+  onClose,
+  onSelect,
+}) => {
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-white rounded-xl p-8 max-w-md w-full mx-4 shadow-2xl">
         <h2 className="text-2xl font-bold mb-6">Select 2FA Method</h2>
         <div className="space-y-3">
-          {methods.includes('fido') && (
+          {methods.includes("fido") && (
             <button
-              onClick={() => onSelect('fido')}
+              onClick={() => onSelect("fido")}
               className="w-full flex items-center justify-between p-4 rounded-lg border hover:border-blue-500 hover:bg-blue-50 transition-colors"
             >
               <div className="flex items-center gap-3">
@@ -113,9 +133,9 @@ const TwoFactorMethodsModal: React.FC<TwoFactorMethodsModalProps> = ({ methods, 
               <ArrowRight className="h-4 w-4 text-gray-400" />
             </button>
           )}
-          {methods.includes('authenticator') && (
+          {methods.includes("authenticator") && (
             <button
-              onClick={() => onSelect('authenticator')}
+              onClick={() => onSelect("authenticator")}
               className="w-full flex items-center justify-between p-4 rounded-lg border hover:border-blue-500 hover:bg-blue-50 transition-colors"
             >
               <div className="flex items-center gap-3">
@@ -125,9 +145,9 @@ const TwoFactorMethodsModal: React.FC<TwoFactorMethodsModalProps> = ({ methods, 
               <ArrowRight className="h-4 w-4 text-gray-400" />
             </button>
           )}
-          {methods.includes('email') && (
+          {methods.includes("email") && (
             <button
-              onClick={() => onSelect('email')}
+              onClick={() => onSelect("email")}
               className="w-full flex items-center justify-between p-4 rounded-lg border hover:border-blue-500 hover:bg-blue-50 transition-colors"
             >
               <div className="flex items-center gap-3">
@@ -137,9 +157,9 @@ const TwoFactorMethodsModal: React.FC<TwoFactorMethodsModalProps> = ({ methods, 
               <ArrowRight className="h-4 w-4 text-gray-400" />
             </button>
           )}
-          {methods.includes('recovery') && (
+          {methods.includes("recovery") && (
             <button
-              onClick={() => onSelect('recovery')}
+              onClick={() => onSelect("recovery")}
               className="w-full flex items-center justify-between p-4 rounded-lg border hover:border-blue-500 hover:bg-blue-50 transition-colors"
             >
               <div className="flex items-center gap-3">
@@ -165,31 +185,32 @@ export default function AuthPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState(location.state?.email || '');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(location.state?.email || "");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showTwoFactorMethods, setShowTwoFactorMethods] = useState(false);
-  const [showTwoFactorVerification, setShowTwoFactorVerification] = useState(false);
-  const [selectedMethod, setSelectedMethod] = useState<string>('');
+  const [showTwoFactorVerification, setShowTwoFactorVerification] =
+    useState(false);
+  const [selectedMethod, setSelectedMethod] = useState<string>("");
   const [twoFactorMethods, setTwoFactorMethods] = useState<string[]>([]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
       // Mock authentication
       const user = MOCK_USERS[email as keyof typeof MOCK_USERS];
-      
+
       if (!user) {
-        setError('Invalid email or password');
+        setError("Invalid email or password");
         return;
       }
 
       if (user.password !== password) {
-        setError('Invalid email or password');
+        setError("Invalid email or password");
         return;
       }
 
@@ -197,8 +218,8 @@ export default function AuthPage() {
       setTwoFactorMethods(user.twoFactorMethods);
       setShowTwoFactorMethods(true);
     } catch (error) {
-      console.error('Login error:', error);
-      setError('An error occurred during login');
+      console.error("Login error:", error);
+      setError("An error occurred during login");
     } finally {
       setLoading(false);
     }
@@ -207,7 +228,7 @@ export default function AuthPage() {
   const handleGitHubLogin = () => {
     // Mock GitHub login
     login();
-    navigate('/dashboard');
+    navigate("/dashboard");
   };
 
   const handleTwoFactorMethodSelect = (method: string) => {
@@ -216,10 +237,10 @@ export default function AuthPage() {
     setShowTwoFactorVerification(true);
 
     // If FIDO is selected, auto-verify after a delay
-    if (method === 'fido') {
+    if (method === "fido") {
       setTimeout(() => {
         login();
-        navigate('/dashboard');
+        navigate("/dashboard");
       }, 1500);
     }
   };
@@ -228,17 +249,17 @@ export default function AuthPage() {
     // Mock verification success
     setShowTwoFactorVerification(false);
     login();
-    navigate('/dashboard');
+    navigate("/dashboard");
   };
 
   const handleForgotPassword = () => {
-    navigate('/forgot-password', { state: { email } });
+    navigate("/forgot-password", { state: { email } });
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <LandingHeader />
-      
+
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="flex justify-center">
@@ -268,7 +289,9 @@ export default function AuthPage() {
                   <div className="w-full border-t border-gray-300" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Or continue with email</span>
+                  <span className="px-2 bg-white text-gray-500">
+                    Or continue with email
+                  </span>
                 </div>
               </div>
             </div>
@@ -281,7 +304,10 @@ export default function AuthPage() {
               )}
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email address
                 </label>
                 <div className="mt-1">
@@ -300,7 +326,10 @@ export default function AuthPage() {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Password
                 </label>
                 <div className="mt-1">
@@ -336,7 +365,7 @@ export default function AuthPage() {
                   disabled={loading}
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  {loading ? 'Signing in...' : 'Sign in'}
+                  {loading ? "Signing in..." : "Sign in"}
                 </button>
               </div>
             </form>
@@ -344,8 +373,12 @@ export default function AuthPage() {
             <div className="mt-6">
               <div className="text-center text-sm text-gray-600">
                 <p>Demo credentials:</p>
-                <p className="font-mono text-xs mt-1">test@example.com / password123</p>
-                <p className="font-mono text-xs">admin@example.com / admin123</p>
+                <p className="font-mono text-xs mt-1">
+                  test@example.com / password123
+                </p>
+                <p className="font-mono text-xs">
+                  admin@example.com / admin123
+                </p>
               </div>
             </div>
           </div>

@@ -1,9 +1,14 @@
-import { Filter } from 'lucide-react';
-import { TokenSelect } from '../TokenSelect';
+import { Filter } from "lucide-react";
+import { TokenSelect } from "../TokenSelect";
 
 interface PullRequestFiltersProps {
   ownerOptions: Array<{ value: string; label: string }>;
-  senderOptions: Array<{ value: string; label: string; avatar?: string; description?: string }>;
+  senderOptions: Array<{
+    value: string;
+    label: string;
+    avatar?: string;
+    description?: string;
+  }>;
   stateOptions: Array<{ value: string; label: string; color: string }>;
   labelOptions: Array<{ value: string; label: string; color: string }>;
   selectedOwners: string[];
@@ -34,10 +39,13 @@ export function PullRequestFilters({
   onStatesChange,
   onLabelsChange,
   onToggleExpanded,
-  onClearFilters
+  onClearFilters,
 }: PullRequestFiltersProps) {
-  const hasActiveFilters = selectedOwners.length > 0 || selectedSenders.length > 0 || 
-    selectedStates.length > 0 || selectedLabels.length > 0;
+  const hasActiveFilters =
+    selectedOwners.length > 0 ||
+    selectedSenders.length > 0 ||
+    selectedStates.length > 0 ||
+    selectedLabels.length > 0;
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg mb-8">
@@ -45,20 +53,27 @@ export function PullRequestFilters({
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
             <Filter className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Filters</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+              Filters
+            </h2>
           </div>
           <button
             onClick={onToggleExpanded}
             className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
           >
-            {isFiltersExpanded ? 'Show Less' : 'Show More'}
+            {isFiltersExpanded ? "Show Less" : "Show More"}
           </button>
         </div>
 
-        <div className={`grid gap-4 ${isFiltersExpanded ? 'grid-cols-1 md:grid-cols-4' : 'grid-cols-1 md:grid-cols-2'}`}>
+        <div
+          className={`grid gap-4 ${isFiltersExpanded ? "grid-cols-1 md:grid-cols-4" : "grid-cols-1 md:grid-cols-2"}`}
+        >
           {/* Owner Filter */}
           <div>
-            <label htmlFor="owner" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            <label
+              htmlFor="owner"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+            >
               Owner
             </label>
             <TokenSelect
@@ -71,7 +86,10 @@ export function PullRequestFilters({
 
           {/* Sender Filter */}
           <div>
-            <label htmlFor="sender" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            <label
+              htmlFor="sender"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+            >
               Sender
             </label>
             <TokenSelect
@@ -83,8 +101,11 @@ export function PullRequestFilters({
           </div>
 
           {/* State Filter */}
-          <div className={!isFiltersExpanded ? 'hidden' : ''}>
-            <label htmlFor="state" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+          <div className={!isFiltersExpanded ? "hidden" : ""}>
+            <label
+              htmlFor="state"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+            >
               State
             </label>
             <TokenSelect
@@ -96,8 +117,11 @@ export function PullRequestFilters({
           </div>
 
           {/* Labels Filter */}
-          <div className={!isFiltersExpanded ? 'hidden' : ''}>
-            <label htmlFor="labels" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+          <div className={!isFiltersExpanded ? "hidden" : ""}>
+            <label
+              htmlFor="labels"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+            >
               Labels
             </label>
             <TokenSelect

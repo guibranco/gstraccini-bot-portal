@@ -1,5 +1,5 @@
-import { NotificationItem } from './NotificationItem';
-import type { Notification } from '../../types';
+import { NotificationItem } from "./NotificationItem";
+import type { Notification } from "../../types";
 
 interface NotificationListProps {
   notifications: Notification[];
@@ -12,7 +12,7 @@ export function NotificationList({
   notifications,
   unreadCount,
   onMarkAsRead,
-  onMarkAllAsRead
+  onMarkAllAsRead,
 }: NotificationListProps) {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg">

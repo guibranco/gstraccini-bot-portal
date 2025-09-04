@@ -1,24 +1,32 @@
-import { Bell, GitPullRequest, MessageSquare, GitMerge, Shield, CheckCircle2, AlertTriangle } from 'lucide-react';
-import type { Notification } from '../../types';
+import {
+  Bell,
+  GitPullRequest,
+  MessageSquare,
+  GitMerge,
+  Shield,
+  CheckCircle2,
+  AlertTriangle,
+} from "lucide-react";
+import type { Notification } from "../../types";
 
 interface NotificationItemProps {
   notification: Notification;
   onMarkAsRead: (id: string) => void;
 }
 
-const getNotificationIcon = (type: Notification['type']) => {
+const getNotificationIcon = (type: Notification["type"]) => {
   switch (type) {
-    case 'pr_review':
+    case "pr_review":
       return <GitPullRequest className="w-5 h-5 text-blue-500" />;
-    case 'issue_mention':
+    case "issue_mention":
       return <MessageSquare className="w-5 h-5 text-yellow-500" />;
-    case 'pr_merged':
+    case "pr_merged":
       return <GitMerge className="w-5 h-5 text-purple-500" />;
-    case 'security_alert':
+    case "security_alert":
       return <Shield className="w-5 h-5 text-red-500" />;
-    case 'issue_assigned':
+    case "issue_assigned":
       return <CheckCircle2 className="w-5 h-5 text-green-500" />;
-    case 'pr_changes':
+    case "pr_changes":
       return <AlertTriangle className="w-5 h-5 text-orange-500" />;
     default:
       return <Bell className="w-5 h-5 text-gray-500" />;
@@ -27,22 +35,25 @@ const getNotificationIcon = (type: Notification['type']) => {
 
 const getPriorityClass = (priority?: string) => {
   switch (priority) {
-    case 'high':
-      return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-    case 'medium':
-      return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-    case 'low':
-      return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+    case "high":
+      return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200";
+    case "medium":
+      return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200";
+    case "low":
+      return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
     default:
-      return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+      return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200";
   }
 };
 
-export function NotificationItem({ notification, onMarkAsRead }: NotificationItemProps) {
+export function NotificationItem({
+  notification,
+  onMarkAsRead,
+}: NotificationItemProps) {
   return (
     <div
       className={`px-6 py-4 ${
-        !notification.read ? 'bg-blue-50 dark:bg-blue-900/10' : ''
+        !notification.read ? "bg-blue-50 dark:bg-blue-900/10" : ""
       }`}
     >
       <div className="flex items-start space-x-3">
@@ -65,7 +76,9 @@ export function NotificationItem({ notification, onMarkAsRead }: NotificationIte
               </a>
             </div>
             {notification.priority && (
-              <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityClass(notification.priority)}`}>
+              <span
+                className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityClass(notification.priority)}`}
+              >
                 {notification.priority}
               </span>
             )}
@@ -93,11 +106,11 @@ export function NotificationItem({ notification, onMarkAsRead }: NotificationIte
               </a>
               <span className="mx-2">•</span>
               <span>
-                {new Date(notification.created_at).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
+                {new Date(notification.created_at).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
                 })}
               </span>
             </div>

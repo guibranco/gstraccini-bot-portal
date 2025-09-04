@@ -1,5 +1,12 @@
-import { Star, GitFork, AlertCircle, Eye, EyeOff, ExternalLink } from 'lucide-react';
-import type { Repository } from '../../types';
+import {
+  Star,
+  GitFork,
+  AlertCircle,
+  Eye,
+  EyeOff,
+  ExternalLink,
+} from "lucide-react";
+import type { Repository } from "../../types";
 
 interface RepositoryHeaderProps {
   repository: Repository;
@@ -54,7 +61,7 @@ export function RepositoryHeader({ repository }: RepositoryHeaderProps) {
                   {formatNumber(repository.issues)}
                 </span>
                 <span className="flex items-center">
-                  {repository.visibility === 'private' ? (
+                  {repository.visibility === "private" ? (
                     <span className="flex items-center text-red-600 dark:text-red-400">
                       <EyeOff className="w-4 h-4 mr-1" />
                       Private

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Mail, ArrowLeft, Bot, CheckCircle2, Clock } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import LandingHeader from '../components/LandingHeader';
-import LandingFooter from '../components/LandingFooter';
+import React, { useState, useEffect } from "react";
+import { Mail, ArrowLeft, Bot, CheckCircle2, Clock } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import LandingHeader from "../components/LandingHeader";
+import LandingFooter from "../components/LandingFooter";
 
 export default function ForgotPasswordPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   // Get email from location state if coming from auth page
   useEffect(() => {
@@ -22,31 +22,31 @@ export default function ForgotPasswordPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError('');
+    setError("");
 
     try {
       // Mock API call for password reset
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // Simulate success
       setIsSubmitted(true);
     } catch (error) {
-      console.error('Password reset error:', error);
-      setError('Failed to send reset email. Please try again.');
+      console.error("Password reset error:", error);
+      setError("Failed to send reset email. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleBackToAuth = () => {
-    navigate('/auth', { state: { email } });
+    navigate("/auth", { state: { email } });
   };
 
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
         <LandingHeader />
-        
+
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <div className="flex justify-center">
@@ -66,13 +66,13 @@ export default function ForgotPasswordPage() {
                 <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
                   <CheckCircle2 className="h-8 w-8 text-green-600" />
                 </div>
-                
+
                 <h3 className="text-lg font-medium text-gray-900 mb-4">
                   Reset link sent!
                 </h3>
-                
+
                 <p className="text-sm text-gray-600 mb-6">
-                  We've sent a password reset link to <strong>{email}</strong>. 
+                  We've sent a password reset link to <strong>{email}</strong>.
                   Click the link in the email to reset your password.
                 </p>
 
@@ -80,7 +80,9 @@ export default function ForgotPasswordPage() {
                   <div className="flex items-start">
                     <Clock className="h-5 w-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
                     <div className="text-sm text-blue-800">
-                      <p className="font-medium mb-1">Didn't receive the email?</p>
+                      <p className="font-medium mb-1">
+                        Didn't receive the email?
+                      </p>
                       <ul className="list-disc list-inside space-y-1 text-blue-700">
                         <li>Check your spam/junk folder</li>
                         <li>Make sure the email address is correct</li>
@@ -94,13 +96,13 @@ export default function ForgotPasswordPage() {
                   <button
                     onClick={() => {
                       setIsSubmitted(false);
-                      setEmail('');
+                      setEmail("");
                     }}
                     className="w-full flex justify-center py-2 px-4 border border-blue-600 rounded-md shadow-sm text-sm font-medium text-blue-600 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
                   >
                     Send another email
                   </button>
-                  
+
                   <button
                     onClick={handleBackToAuth}
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
@@ -121,7 +123,7 @@ export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <LandingHeader />
-      
+
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="flex justify-center">
@@ -145,7 +147,10 @@ export default function ForgotPasswordPage() {
               )}
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email address
                 </label>
                 <div className="mt-1 relative">
@@ -179,7 +184,7 @@ export default function ForgotPasswordPage() {
                       Sending reset link...
                     </div>
                   ) : (
-                    'Send reset link'
+                    "Send reset link"
                   )}
                 </button>
               </div>
@@ -191,7 +196,9 @@ export default function ForgotPasswordPage() {
                   <div className="w-full border-t border-gray-300" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Remember your password?</span>
+                  <span className="px-2 bg-white text-gray-500">
+                    Remember your password?
+                  </span>
                 </div>
               </div>
 
@@ -208,9 +215,14 @@ export default function ForgotPasswordPage() {
 
             <div className="mt-6">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <h4 className="text-sm font-medium text-gray-900 mb-2">Need help?</h4>
+                <h4 className="text-sm font-medium text-gray-900 mb-2">
+                  Need help?
+                </h4>
                 <div className="text-xs text-gray-600 space-y-1">
-                  <p>• Make sure you're using the email associated with your account</p>
+                  <p>
+                    • Make sure you're using the email associated with your
+                    account
+                  </p>
                   <p>• Check your spam folder if you don't receive the email</p>
                   <p>• Contact support if you continue having issues</p>
                 </div>

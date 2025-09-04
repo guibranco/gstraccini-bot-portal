@@ -1,10 +1,10 @@
-import React from 'react';
-import { Bot, Github, ArrowRight } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import FeaturesGrid from '../components/FeaturesGrid';
-import CommandsSection from '../components/CommandsSection';
-import LandingHeader from '../components/LandingHeader';
-import LandingFooter from '../components/LandingFooter';
+import React from "react";
+import { Bot, Github, ArrowRight } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import FeaturesGrid from "../components/FeaturesGrid";
+import CommandsSection from "../components/CommandsSection";
+import LandingHeader from "../components/LandingHeader";
+import LandingFooter from "../components/LandingFooter";
 
 export function Landing() {
   const { isAuthenticated } = useAuth();
@@ -12,7 +12,7 @@ export function Landing() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <LandingHeader />
-      
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-r from-[#0069d9] to-[#0056b3] py-24 sm:py-32">
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
@@ -22,7 +22,8 @@ export function Landing() {
               GStraccini Bot
             </h1>
             <p className="text-lg leading-8 text-gray-200 mb-8">
-              Supercharge your GitHub workflow with automated PR management, code quality checks, and intelligent issue handling.
+              Supercharge your GitHub workflow with automated PR management,
+              code quality checks, and intelligent issue handling.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -60,7 +61,7 @@ export function Landing() {
 
       <FeaturesGrid />
       <CommandsSection />
-      
+
       <LandingFooter />
     </div>
   );

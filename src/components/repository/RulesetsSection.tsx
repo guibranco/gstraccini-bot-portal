@@ -1,5 +1,5 @@
-import { Shield, CheckCircle, XCircle } from 'lucide-react';
-import type { Ruleset } from '../../types';
+import { Shield, CheckCircle, XCircle } from "lucide-react";
+import type { Ruleset } from "../../types";
 
 interface RulesetsSectionProps {
   rulesets: Ruleset[];
@@ -23,28 +23,30 @@ export function RulesetsSection({ rulesets = [] }: RulesetsSectionProps) {
                 <h3 className="font-medium text-gray-900 dark:text-white">
                   {ruleset.name}
                 </h3>
-                <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                  ruleset.enforcement === 'active'
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                    : ruleset.enforcement === 'evaluate'
-                    ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-                    : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                }`}>
+                <span
+                  className={`px-2 py-1 text-xs font-medium rounded-full ${
+                    ruleset.enforcement === "active"
+                      ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                      : ruleset.enforcement === "evaluate"
+                        ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                        : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                  }`}
+                >
                   {ruleset.enforcement}
                 </span>
               </div>
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Targets: {ruleset.target.join(', ')}
+                  Targets: {ruleset.target.join(", ")}
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Bypass actors: {ruleset.bypass_actors.join(', ')}
+                  Bypass actors: {ruleset.bypass_actors.join(", ")}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-2 text-sm">
                 {Object.entries(ruleset.rules).map(([key, value]) => (
                   <div key={key} className="flex items-center space-x-2">
-                    {typeof value === 'boolean' ? (
+                    {typeof value === "boolean" ? (
                       value ? (
                         <CheckCircle className="w-4 h-4 text-green-500" />
                       ) : (
@@ -54,7 +56,7 @@ export function RulesetsSection({ rulesets = [] }: RulesetsSectionProps) {
                       <Shield className="w-4 h-4 text-blue-500" />
                     )}
                     <span className="text-gray-600 dark:text-gray-300">
-                      {key.replace(/_/g, ' ')}
+                      {key.replace(/_/g, " ")}
                     </span>
                   </div>
                 ))}

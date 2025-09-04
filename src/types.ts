@@ -1,4 +1,4 @@
-import { User } from './types';
+import { User } from "./types";
 
 export interface User {
   login: string;
@@ -43,7 +43,7 @@ export interface Installation {
     login: string;
     name?: string;
     avatar_url: string;
-    type: 'User' | 'Organization';
+    type: "User" | "Organization";
   };
   repositories_count: number;
   created_at: string;
@@ -66,7 +66,7 @@ export interface PullRequest {
   repository: string;
   full_name: string;
   created_at: string;
-  state: 'success' | 'failure' | 'pending' | 'error' | 'skipped' | 'empty';
+  state: "success" | "failure" | "pending" | "error" | "skipped" | "empty";
   owner?: string;
   labels?: Label[];
   sender: User;
@@ -91,7 +91,12 @@ export interface Issue {
 
 export interface Activity {
   id: string;
-  type: 'pr_created' | 'pr_merged' | 'issue_closed' | 'commits_analyzed' | 'pr_opened';
+  type:
+    | "pr_created"
+    | "pr_merged"
+    | "issue_closed"
+    | "commits_analyzed"
+    | "pr_opened";
   description: string;
   repository: string;
   timestamp: string;
@@ -100,10 +105,15 @@ export interface Activity {
 
 export interface PendingAction {
   id: string;
-  type: 'review_pr' | 'close_issue' | 'merge_pr' | 'update_readme' | 'respond_issue';
+  type:
+    | "review_pr"
+    | "close_issue"
+    | "merge_pr"
+    | "update_readme"
+    | "respond_issue";
   description: string;
   repository: string;
-  priority: 'high' | 'medium' | 'low';
+  priority: "high" | "medium" | "low";
 }
 
 export interface Repository {
@@ -116,7 +126,7 @@ export interface Repository {
   forks: number;
   issues: number;
   language: string;
-  visibility: 'public' | 'private';
+  visibility: "public" | "private";
   branches: Branch[];
   default_branch: string;
   latest_release?: Release;
@@ -165,7 +175,7 @@ export interface BranchProtection {
 export interface Ruleset {
   name: string;
   target: string[];
-  enforcement: 'active' | 'evaluate' | 'disabled';
+  enforcement: "active" | "evaluate" | "disabled";
   bypass_actors: string[];
   conditions: {
     ref_name: {
@@ -187,7 +197,7 @@ export interface Workflow {
   id: string;
   name: string;
   path: string;
-  state: 'active' | 'disabled';
+  state: "active" | "disabled";
   created_at: string;
   updated_at: string;
   triggers: string[];
@@ -215,8 +225,8 @@ export interface WorkflowStep {
 export interface WorkflowRun {
   id: string;
   workflow_name: string;
-  status: 'queued' | 'in_progress' | 'completed';
-  conclusion: 'success' | 'failure' | 'cancelled' | 'skipped' | null;
+  status: "queued" | "in_progress" | "completed";
+  conclusion: "success" | "failure" | "cancelled" | "skipped" | null;
   created_at: string;
   updated_at: string;
   head_branch: string;
@@ -232,8 +242,8 @@ export interface WorkflowRun {
 export interface WorkflowRunJob {
   id: string;
   name: string;
-  status: 'queued' | 'in_progress' | 'completed';
-  conclusion: 'success' | 'failure' | 'cancelled' | 'skipped' | null;
+  status: "queued" | "in_progress" | "completed";
+  conclusion: "success" | "failure" | "cancelled" | "skipped" | null;
   started_at: string;
   completed_at?: string;
   steps: WorkflowRunStep[];
@@ -241,8 +251,8 @@ export interface WorkflowRunJob {
 
 export interface WorkflowRunStep {
   name: string;
-  status: 'queued' | 'in_progress' | 'completed';
-  conclusion: 'success' | 'failure' | 'cancelled' | 'skipped' | null;
+  status: "queued" | "in_progress" | "completed";
+  conclusion: "success" | "failure" | "cancelled" | "skipped" | null;
   number: number;
   started_at: string;
   completed_at?: string;
@@ -250,7 +260,13 @@ export interface WorkflowRunStep {
 
 export interface Notification {
   id: string;
-  type: 'pr_review' | 'pr_merged' | 'issue_mention' | 'issue_assigned' | 'pr_changes' | 'security_alert';
+  type:
+    | "pr_review"
+    | "pr_merged"
+    | "issue_mention"
+    | "issue_assigned"
+    | "pr_changes"
+    | "security_alert";
   title: string;
   description: string;
   repository: string;
@@ -259,7 +275,7 @@ export interface Notification {
   read: boolean;
   url: string;
   sender: User;
-  priority?: 'high' | 'medium' | 'low';
+  priority?: "high" | "medium" | "low";
 }
 
 export interface IntegrationUsage {
@@ -273,7 +289,7 @@ export interface IntegrationUsage {
 export interface Integration {
   provider: string;
   apiKey: string;
-  status: 'Active' | 'Inactive' | 'Error' | 'Validating';
+  status: "Active" | "Inactive" | "Error" | "Validating";
   lastUsage: string;
   lastError: string;
   last_check: string;
@@ -289,7 +305,7 @@ export interface Provider {
   description: string;
 }
 
-export type DependabotFrequency = 'daily' | 'weekly' | 'monthly';
+export type DependabotFrequency = "daily" | "weekly" | "monthly";
 
 export interface RepositorySettings {
   createLabels: boolean;

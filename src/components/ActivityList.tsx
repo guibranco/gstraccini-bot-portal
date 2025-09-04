@@ -1,22 +1,28 @@
-import { Activity } from '../types';
-import { GitPullRequest, GitMerge, XCircle, GitCommit, GitPullRequestDraft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Activity } from "../types";
+import {
+  GitPullRequest,
+  GitMerge,
+  XCircle,
+  GitCommit,
+  GitPullRequestDraft,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ActivityListProps {
   activities: Activity[];
 }
 
-const getActivityIcon = (type: Activity['type']) => {
+const getActivityIcon = (type: Activity["type"]) => {
   switch (type) {
-    case 'pr_created':
+    case "pr_created":
       return <GitPullRequest className="w-5 h-5 text-blue-500" />;
-    case 'pr_merged':
+    case "pr_merged":
       return <GitMerge className="w-5 h-5 text-purple-500" />;
-    case 'issue_closed':
+    case "issue_closed":
       return <XCircle className="w-5 h-5 text-green-500" />;
-    case 'commits_analyzed':
+    case "commits_analyzed":
       return <GitCommit className="w-5 h-5 text-orange-500" />;
-    case 'pr_opened':
+    case "pr_opened":
       return <GitPullRequestDraft className="w-5 h-5 text-blue-500" />;
   }
 };
@@ -24,10 +30,15 @@ const getActivityIcon = (type: Activity['type']) => {
 export function ActivityList({ activities }: ActivityListProps) {
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">Recent Activities</h3>
+      <h3 className="text-xl font-semibold text-gray-800 mb-4">
+        Recent Activities
+      </h3>
       <div className="space-y-4">
         {activities.map((activity) => (
-          <div key={activity.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+          <div
+            key={activity.id}
+            className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
+          >
             {getActivityIcon(activity.type)}
             <div className="flex-1">
               <div className="flex items-center space-x-2">
@@ -54,11 +65,11 @@ export function ActivityList({ activities }: ActivityListProps) {
                   {activity.repository}
                 </Link>
                 <span className="mx-2">•</span>
-                {new Date(activity.timestamp).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
+                {new Date(activity.timestamp).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
                 })}
               </p>
             </div>

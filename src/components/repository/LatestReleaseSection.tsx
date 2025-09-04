@@ -1,5 +1,5 @@
-import { Tag } from 'lucide-react';
-import type { Release } from '../../types';
+import { Tag } from "lucide-react";
+import type { Release } from "../../types";
 
 interface LatestReleaseSectionProps {
   release?: Release;
@@ -37,9 +37,7 @@ export function LatestReleaseSection({ release }: LatestReleaseSectionProps) {
                 )}
               </div>
             </div>
-            <p className="text-gray-600 dark:text-gray-300">
-              {release.body}
-            </p>
+            <p className="text-gray-600 dark:text-gray-300">{release.body}</p>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               Published: {new Date(release.published_at).toLocaleDateString()}
             </p>

@@ -143,17 +143,20 @@ src/
 ### ⚡ Quick Start
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/guibranco/gstraccini-bot-portal.git
    cd gstraccini-bot-portal
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -165,14 +168,14 @@ src/
 
 ### 🛠️ Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Build production-ready application |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint for code quality checks |
-| `npm run test` | Run test suite with Vitest |
-| `npm run test:coverage` | Run tests with coverage report |
+| Command                 | Description                              |
+| ----------------------- | ---------------------------------------- |
+| `npm run dev`           | Start development server with hot reload |
+| `npm run build`         | Build production-ready application       |
+| `npm run preview`       | Preview production build locally         |
+| `npm run lint`          | Run ESLint for code quality checks       |
+| `npm run test`          | Run test suite with Vitest               |
+| `npm run test:coverage` | Run tests with coverage report           |
 
 ---
 
@@ -209,30 +212,35 @@ src/
 ## 🌟 Features
 
 ### 🎯 Dashboard & Analytics
+
 - **Real-time Statistics** - Live metrics for repositories, PRs, and issues
 - **Activity Timeline** - Chronological view of all repository activities
 - **Performance Insights** - Detailed analytics on workflow efficiency
 - **Custom Widgets** - Configurable dashboard components
 
 ### 🔐 Security & Authentication
+
 - **GitHub OAuth Integration** - Secure authentication via GitHub
 - **Multi-Factor Authentication** - FIDO2, TOTP, and recovery codes support
 - **Session Management** - Secure session handling and automatic expiration
 - **Permission Controls** - Granular access control for repositories
 
 ### 🔧 Repository Management
+
 - **Branch Protection** - Configure and manage branch protection rules
 - **Workflow Automation** - Set up and monitor GitHub Actions workflows
 - **Integration Hub** - Connect with SonarCloud, Codacy, Snyk, and more
 - **Release Management** - Track and manage repository releases
 
 ### 📊 Pull Request & Issue Tracking
+
 - **Advanced Filtering** - Filter by status, labels, assignees, and more
 - **Bulk Operations** - Perform actions on multiple items simultaneously
 - **Timeline Visualization** - Visual representation of PR/issue lifecycle
 - **Automated Workflows** - Set up automated responses and actions
 
 ### 🔔 Notifications & Alerts
+
 - **Real-time Notifications** - Instant updates on important events
 - **Custom Filters** - Configure notification preferences
 - **Priority Levels** - Categorize notifications by importance
@@ -253,6 +261,7 @@ src/
 ### 🎭 Dark Mode Support
 
 The application features a comprehensive dark mode implementation with:
+
 - **System Preference Detection** - Automatically adapts to user's system theme
 - **Manual Toggle** - Users can override system preference
 - **Persistent Settings** - Theme preference saved in localStorage
@@ -297,7 +306,7 @@ The project uses Vite with SWC for optimal performance:
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    exclude: ["lucide-react"],
   },
 });
 ```
@@ -322,6 +331,7 @@ npm run test:coverage
 ```
 
 Coverage reports are generated in the `coverage/` directory with:
+
 - **HTML Reports** - Interactive coverage visualization
 - **JSON Reports** - Machine-readable coverage data
 - **LCOV Reports** - Integration with external tools
@@ -360,6 +370,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ### ☁️ Deployment Platforms
 
 The application is optimized for deployment on:
+
 - **Vercel** - Zero-configuration deployment
 - **Netlify** - Continuous deployment from Git
 - **AWS S3 + CloudFront** - Scalable static hosting

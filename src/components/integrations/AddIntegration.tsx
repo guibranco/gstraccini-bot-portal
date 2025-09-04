@@ -1,6 +1,6 @@
-import { Eye, EyeOff, Plus, Clock, Terminal, Play } from 'lucide-react';
-import { Provider } from '../../types';
-import { providerCommands, providerActions } from './integrationData';
+import { Eye, EyeOff, Plus, Clock, Terminal, Play } from "lucide-react";
+import { Provider } from "../../types";
+import { providerCommands, providerActions } from "./integrationData";
 
 interface AddIntegrationProps {
   providers: Record<string, Provider>;
@@ -25,13 +25,15 @@ export function AddIntegration({
   onProviderSelect,
   onApiKeyChange,
   onToggleApiKeyVisibility,
-  onSubmit
+  onSubmit,
 }: AddIntegrationProps) {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg mb-8">
       <div className="p-6">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Add Integration</h2>
-        
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+          Add Integration
+        </h2>
+
         {availableProviders.length === 0 ? (
           <div className="text-center py-6 text-gray-500 dark:text-gray-400">
             All available integrations have been configured
@@ -50,8 +52,8 @@ export function AddIntegration({
                     onClick={() => onProviderSelect(key)}
                     className={`w-full flex items-center space-x-3 p-3 rounded-lg border transition-colors ${
                       selectedProvider === key
-                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                        : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700'
+                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                        : "border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700"
                     }`}
                   >
                     <img
@@ -88,7 +90,7 @@ export function AddIntegration({
                         </label>
                         <div className="relative">
                           <input
-                            type={showApiKey['new'] ? 'text' : 'password'}
+                            type={showApiKey["new"] ? "text" : "password"}
                             value={apiKey}
                             onChange={(e) => onApiKeyChange(e.target.value)}
                             placeholder="Enter API Key"
@@ -99,7 +101,7 @@ export function AddIntegration({
                             onClick={onToggleApiKeyVisibility}
                             className="absolute inset-y-0 right-0 px-3 flex items-center"
                           >
-                            {showApiKey['new'] ? (
+                            {showApiKey["new"] ? (
                               <EyeOff className="w-5 h-5 text-gray-400" />
                             ) : (
                               <Eye className="w-5 h-5 text-gray-400" />
@@ -110,7 +112,11 @@ export function AddIntegration({
 
                       <button
                         onClick={onSubmit}
-                        disabled={!selectedProvider || apiKey.length < 10 || isValidating}
+                        disabled={
+                          !selectedProvider ||
+                          apiKey.length < 10 ||
+                          isValidating
+                        }
                         className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {isValidating ? (
@@ -158,22 +164,24 @@ export function AddIntegration({
                       Available Actions
                     </h3>
                     <div className="space-y-3">
-                      {providerActions[selectedProvider]?.map((action, index) => (
-                        <div
-                          key={index}
-                          className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3"
-                        >
-                          <h4 className="font-medium text-gray-900 dark:text-white">
-                            {action.name}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                            {action.description}
-                          </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                            Triggers on: {action.event}
-                          </p>
-                        </div>
-                      ))}
+                      {providerActions[selectedProvider]?.map(
+                        (action, index) => (
+                          <div
+                            key={index}
+                            className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3"
+                          >
+                            <h4 className="font-medium text-gray-900 dark:text-white">
+                              {action.name}
+                            </h4>
+                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                              {action.description}
+                            </p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                              Triggers on: {action.event}
+                            </p>
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
                 </div>

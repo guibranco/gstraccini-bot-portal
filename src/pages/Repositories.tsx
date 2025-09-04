@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   Star,
   GitFork,
@@ -8,30 +8,34 @@ import {
   Check,
   X,
   Filter,
-  Search
-} from 'lucide-react';
-import { TokenSelect } from '../components/TokenSelect';
-import { mockRepositories } from '../mockData';
-import type { Repository } from '../types';
-import { Link } from 'react-router-dom';
+  Search,
+} from "lucide-react";
+import { TokenSelect } from "../components/TokenSelect";
+import { mockRepositories } from "../mockData";
+import type { Repository } from "../types";
+import { Link } from "react-router-dom";
 
 export function Repositories() {
   const [repositories, setRepositories] = useState<Repository[]>([]);
-  const [selectedOrganizations, setSelectedOrganizations] = useState<string[]>([]);
+  const [selectedOrganizations, setSelectedOrganizations] = useState<string[]>(
+    [],
+  );
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
-  const [selectedVisibilities, setSelectedVisibilities] = useState<string[]>([]);
+  const [selectedVisibilities, setSelectedVisibilities] = useState<string[]>(
+    [],
+  );
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
 
   const visibilityOptions = [
-    { value: 'public', label: 'Public', color: '22c55e' },
-    { value: 'private', label: 'Private', color: 'ef4444' }
+    { value: "public", label: "Public", color: "22c55e" },
+    { value: "private", label: "Private", color: "ef4444" },
   ];
 
   const typeOptions = [
-    { value: 'source', label: 'Source', color: '3b82f6' },
-    { value: 'fork', label: 'Fork', color: '8b5cf6' }
+    { value: "source", label: "Source", color: "3b82f6" },
+    { value: "fork", label: "Fork", color: "8b5cf6" },
   ];
 
   useEffect(() => {
@@ -45,30 +49,42 @@ export function Repositories() {
   }, []);
 
   const organizationOptions = Array.from(
-    new Set(repositories.map(repo => repo.organization))
-  ).map(org => {
-    const repo = repositories.find(r => r.organization === org);
+    new Set(repositories.map((repo) => repo.organization)),
+  ).map((org) => {
+    const repo = repositories.find((r) => r.organization === org);
     return {
       value: org,
       label: org,
-      avatar: repo?.organization_avatar
+      avatar: repo?.organization_avatar,
     };
   });
 
   const languageOptions = Array.from(
-    new Set(repositories.map(repo => repo.language))
-  ).map(lang => ({
+    new Set(repositories.map((repo) => repo.language)),
+  ).map((lang) => ({
     value: lang,
     label: lang,
-    color: getLanguageColor(lang)
+    color: getLanguageColor(lang),
   }));
-  
-  const filteredRepositories = repositories.filter(repo => {
-    if (selectedOrganizations.length > 0 && !selectedOrganizations.includes(repo.organization)) return false;
-    if (selectedLanguages.length > 0 && !selectedLanguages.includes(repo.language)) return false;
-    if (selectedVisibilities.length > 0 && !selectedVisibilities.includes(repo.visibility)) return false;
+
+  const filteredRepositories = repositories.filter((repo) => {
+    if (
+      selectedOrganizations.length > 0 &&
+      !selectedOrganizations.includes(repo.organization)
+    )
+      return false;
+    if (
+      selectedLanguages.length > 0 &&
+      !selectedLanguages.includes(repo.language)
+    )
+      return false;
+    if (
+      selectedVisibilities.length > 0 &&
+      !selectedVisibilities.includes(repo.visibility)
+    )
+      return false;
     if (selectedTypes.length > 0) {
-      const type = repo.fork ? 'fork' : 'source';
+      const type = repo.fork ? "fork" : "source";
       if (!selectedTypes.includes(type)) return false;
     }
     return true;
@@ -91,9 +107,10 @@ export function Repositories() {
     setSelectedTypes([]);
   };
 
-  const hasActiveFilters = selectedOrganizations.length > 0 || 
-    selectedLanguages.length > 0 || 
-    selectedVisibilities.length > 0 || 
+  const hasActiveFilters =
+    selectedOrganizations.length > 0 ||
+    selectedLanguages.length > 0 ||
+    selectedVisibilities.length > 0 ||
     selectedTypes.length > 0;
 
   return (
@@ -104,20 +121,27 @@ export function Repositories() {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-2">
               <Filter className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Filters</h2>
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                Filters
+              </h2>
             </div>
             <button
               onClick={() => setIsFiltersExpanded(!isFiltersExpanded)}
               className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
             >
-              {isFiltersExpanded ? 'Show Less' : 'Show More'}
+              {isFiltersExpanded ? "Show Less" : "Show More"}
             </button>
           </div>
 
-          <div className={`grid gap-4 ${isFiltersExpanded ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 md:grid-cols-2'}`}>
+          <div
+            className={`grid gap-4 ${isFiltersExpanded ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" : "grid-cols-1 md:grid-cols-2"}`}
+          >
             {/* Organization Filter */}
             <div>
-              <label htmlFor="organization" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="organization"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 Organization
               </label>
               <TokenSelect
@@ -130,7 +154,10 @@ export function Repositories() {
 
             {/* Language Filter */}
             <div>
-              <label htmlFor="language" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+              <label
+                htmlFor="language"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 Language
               </label>
               <TokenSelect
@@ -142,8 +169,11 @@ export function Repositories() {
             </div>
 
             {/* Visibility Filter */}
-            <div className={!isFiltersExpanded ? 'hidden md:block' : ''}>
-              <label htmlFor="visibility" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            <div className={!isFiltersExpanded ? "hidden md:block" : ""}>
+              <label
+                htmlFor="visibility"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 Visibility
               </label>
               <TokenSelect
@@ -155,8 +185,11 @@ export function Repositories() {
             </div>
 
             {/* Type Filter */}
-            <div className={!isFiltersExpanded ? 'hidden md:block' : ''}>
-              <label htmlFor="type" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            <div className={!isFiltersExpanded ? "hidden md:block" : ""}>
+              <label
+                htmlFor="type"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
+              >
                 Repository Type
               </label>
               <TokenSelect
@@ -196,20 +229,63 @@ export function Repositories() {
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-gray-50 dark:bg-gray-900">
               <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Organization</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Name</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Stars</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Fork</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Forks</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Issues</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Language</th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Visibility</th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Organization
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Name
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Stars
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Fork
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Forks
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Issues
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Language
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Visibility
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
               {isLoading ? (
                 <tr>
-                  <td colSpan={8} className="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                  <td
+                    colSpan={8}
+                    className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
+                  >
                     <div className="flex items-center justify-center">
                       <div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent"></div>
                     </div>
@@ -217,13 +293,19 @@ export function Repositories() {
                 </tr>
               ) : filteredRepositories.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                  <td
+                    colSpan={8}
+                    className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
+                  >
                     No repositories found
                   </td>
                 </tr>
               ) : (
                 filteredRepositories.map((repo) => (
-                  <tr key={`${repo.organization}/${repo.name}`} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <tr
+                    key={`${repo.organization}/${repo.name}`}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-700"
+                  >
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                       <div className="flex items-center space-x-2">
                         {repo.organization_avatar && (
@@ -277,12 +359,12 @@ export function Repositories() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <span className="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full">
-                        {repo.language || '-'}
+                        {repo.language || "-"}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <span className="flex items-center">
-                        {repo.visibility === 'private' ? (
+                        {repo.visibility === "private" ? (
                           <span className="flex items-center text-red-600 dark:text-red-400">
                             <EyeOff className="w-4 h-4 mr-1" />
                             Private
@@ -308,19 +390,19 @@ export function Repositories() {
 
 function getLanguageColor(language: string): string {
   const colors: Record<string, string> = {
-    JavaScript: 'f7df1e',
-    TypeScript: '3178c6',
-    Go: '00add8',
-    Python: '3776ab',
-    Java: 'b07219',
-    Ruby: 'cc342d',
-    PHP: '4f5d95',
-    'C++': 'f34b7d',
-    CSS: '563d7c',
-    HTML: 'e34c26',
-    Swift: 'ffac45',
-    Kotlin: 'f18e33',
-    Rust: 'dea584',
+    JavaScript: "f7df1e",
+    TypeScript: "3178c6",
+    Go: "00add8",
+    Python: "3776ab",
+    Java: "b07219",
+    Ruby: "cc342d",
+    PHP: "4f5d95",
+    "C++": "f34b7d",
+    CSS: "563d7c",
+    HTML: "e34c26",
+    Swift: "ffac45",
+    Kotlin: "f18e33",
+    Rust: "dea584",
   };
-  return colors[language] || '6b7280';
+  return colors[language] || "6b7280";
 }
