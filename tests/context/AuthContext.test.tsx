@@ -6,7 +6,9 @@ function AuthConsumer() {
   const { isAuthenticated, login, logout } = useAuth();
   return (
     <div>
-      <span data-testid="status">{isAuthenticated ? "authenticated" : "unauthenticated"}</span>
+      <span data-testid="status">
+        {isAuthenticated ? "authenticated" : "unauthenticated"}
+      </span>
       <button onClick={login}>login</button>
       <button onClick={logout}>logout</button>
     </div>

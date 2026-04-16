@@ -39,7 +39,11 @@ describe("groupEventsByPayloadId", () => {
   });
 
   it("preserves event order within a group", () => {
-    const events = [makeEvent("same", "push"), makeEvent("same", "create"), makeEvent("same", "delete")];
+    const events = [
+      makeEvent("same", "push"),
+      makeEvent("same", "create"),
+      makeEvent("same", "delete"),
+    ];
     const result = groupEventsByPayloadId(events);
     expect(result["same"]).toEqual(events);
   });

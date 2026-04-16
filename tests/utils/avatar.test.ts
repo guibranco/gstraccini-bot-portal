@@ -3,7 +3,9 @@ import { getAppAvatarUrl } from "../../src/utils/avatar";
 
 describe("getAppAvatarUrl", () => {
   it("returns the correct GitHub app avatar URL", () => {
-    expect(getAppAvatarUrl("my-app")).toBe("https://github.com/apps/my-app.png");
+    expect(getAppAvatarUrl("my-app")).toBe(
+      "https://github.com/apps/my-app.png",
+    );
   });
 
   it("includes the appId in the URL path", () => {
