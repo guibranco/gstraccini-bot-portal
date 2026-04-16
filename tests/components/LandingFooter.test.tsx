@@ -34,7 +34,9 @@ describe("LandingFooter", () => {
 
   it("renders Documentation link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /^documentation$/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /^documentation$/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders GitHub link", () => {
@@ -44,12 +46,16 @@ describe("LandingFooter", () => {
 
   it("renders GitHub Marketplace link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /github marketplace/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /github marketplace/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Privacy link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /^privacy$/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /^privacy$/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Terms link", () => {
@@ -59,16 +65,22 @@ describe("LandingFooter", () => {
 
   it("renders Security link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /^security$/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /^security$/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Service Status link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /service status/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /service status/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders copyright notice", () => {
     renderFooter();
-    expect(screen.getByText(/GStraccini Bot\. All rights reserved\./)).toBeInTheDocument();
+    expect(
+      screen.getByText(/GStraccini Bot\. All rights reserved\./),
+    ).toBeInTheDocument();
   });
 });

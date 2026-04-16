@@ -14,7 +14,10 @@ describe("SettingsCard", () => {
 
   it("renders the icon", () => {
     render(
-      <SettingsCard title="Settings" icon={<span data-testid="card-icon">★</span>}>
+      <SettingsCard
+        title="Settings"
+        icon={<span data-testid="card-icon">★</span>}
+      >
         <p>content</p>
       </SettingsCard>,
     );

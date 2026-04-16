@@ -17,7 +17,13 @@ describe("StatCard", () => {
   });
 
   it("renders the icon", () => {
-    render(<StatCard title="Issues" value={5} icon={<span data-testid="icon">★</span>} />);
+    render(
+      <StatCard
+        title="Issues"
+        value={5}
+        icon={<span data-testid="icon">★</span>}
+      />,
+    );
     expect(screen.getByTestId("icon")).toBeInTheDocument();
   });
 
