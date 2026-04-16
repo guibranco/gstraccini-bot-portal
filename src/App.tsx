@@ -28,7 +28,7 @@ import { Integrations } from "./pages/Integrations";
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <Routes>
           {/* Public Routes - Landing Pages */}
           <Route path="/" element={<PublicLayout />}>

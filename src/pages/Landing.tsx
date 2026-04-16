@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Bot, Github, ArrowRight } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import FeaturesGrid from "../components/FeaturesGrid";
@@ -46,13 +47,13 @@ export function Landing() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               ) : (
-                <a
-                  href="/auth"
+                <Link
+                  to="/auth"
                   className="inline-flex items-center px-6 py-3 rounded-full bg-blue-500 text-white font-semibold hover:bg-blue-400 transition-colors"
                 >
                   <Github className="mr-2 h-5 w-5" />
                   Login with GitHub
-                </a>
+                </Link>
               )}
             </div>
           </div>

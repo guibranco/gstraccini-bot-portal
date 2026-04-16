@@ -91,7 +91,7 @@ export function PullRequestItem({ pullRequest: pr }: PullRequestItemProps) {
           </div>
           <div className="flex items-center space-x-2 mt-2">
             <Link
-              to={`/pull-requests/${pr.url.split("/").pop()}`}
+              to={`/dashboard/pull-requests/${pr.url.split("/").pop()}`}
               className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
             >
               {pr.title}
