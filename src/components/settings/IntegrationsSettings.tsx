@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { Cable } from "lucide-react";
 import { SettingsCard } from "./SettingsCard";
 import { SettingToggle } from "./SettingToggle";
@@ -234,12 +235,12 @@ export function IntegrationsSettings({
         {integrations.length === 0 && (
           <div className="text-center py-6 text-gray-500 dark:text-gray-400">
             No active integrations found. Add integrations in the{" "}
-            <a
-              href="/integrations"
+            <Link
+              to="/integrations"
               className="text-blue-600 dark:text-blue-400 hover:underline"
             >
               Integrations page
-            </a>
+            </Link>
             .
           </div>
         )}
