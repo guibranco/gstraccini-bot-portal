@@ -13,6 +13,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  pull-requests: read
 
 jobs:
   build:
@@ -41,7 +42,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: "npm"
 
       - name: Install dependencies
@@ -56,15 +57,27 @@ jobs:
           name: build-output
           path: dist/
 
-      # - name: Test
-      #   run: npm test
+      - name: Test with coverage
+        run: npm run test:coverage
 
-      # - name: Upload test results
-      #   if: always()
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: test-results
-      #     path: test-results.json
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Report coverage to DeepSource
+        run: |
+          curl https://deepsource.toolbox.host/downloads/cli | sh
+          ./bin/deepsource report --analyzer test-coverage --key javascript --value-file coverage/lcov.info
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
 
   deploy:
     name: Deploy GH Pages
@@ -77,18 +90,18 @@ jobs:
         with:
           name: build-output
           path: ./dist
-      
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-          
+
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-  
+
   create_release:
     name: Create release
     needs: [build, deploy]
