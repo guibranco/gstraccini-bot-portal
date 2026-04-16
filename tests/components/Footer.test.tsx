@@ -50,7 +50,7 @@ describe("Footer", () => {
 
   it("renders Documentation external link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /documentation/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /^documentation$/i })).toBeInTheDocument();
   });
 
   it("renders GitHub Marketplace link", () => {

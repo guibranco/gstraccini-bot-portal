@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
@@ -20,9 +20,27 @@ function renderHeader(user = mockUser) {
   );
 }
 
+const localStorageMock = (() => {
+  let store: Record<string, string> = {};
+  return {
+    getItem: (key: string) => store[key] ?? null,
+    setItem: (key: string, val: string) => { store[key] = val; },
+    removeItem: (key: string) => { delete store[key]; },
+    clear: () => { store = {}; },
+  };
+})();
+
 describe("Header", () => {
   beforeEach(() => {
-    localStorage.clear();
+    Object.defineProperty(window, "localStorage", {
+      value: localStorageMock,
+      writable: true,
+    });
+    localStorageMock.clear();
+  });
+
+  afterEach(() => {
+    localStorageMock.clear();
   });
 
   it("renders without crashing", () => {
