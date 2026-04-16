@@ -40,9 +40,9 @@ jobs:
           name: coverage
           path: coverage/
 
-      - name: Report coverage to DeepSource
+      - name: Report results to DeepSource
         run: |
-          curl https://deepsource.toolbox.host/downloads/cli | sh
+          curl -fsSL https://cli.deepsource.com/install | BINDIR=./bin sh
           ./bin/deepsource report --analyzer test-coverage --key javascript --value-file coverage/lcov.info
         env:
           DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
