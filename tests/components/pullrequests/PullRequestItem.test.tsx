@@ -111,6 +111,9 @@ describe("PullRequestItem", () => {
     renderPR(makePR());
     const externalLink = screen.getByTitle("View on GitHub");
     expect(externalLink).toBeInTheDocument();
-    expect(externalLink).toHaveAttribute("href", "https://github.com/owner/repo/pull/42");
+    expect(externalLink).toHaveAttribute(
+      "href",
+      "https://github.com/owner/repo/pull/42",
+    );
   });
 });

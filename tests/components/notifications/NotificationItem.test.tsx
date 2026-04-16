@@ -11,9 +11,7 @@ const sender = {
   html_url: "https://github.com/octocat",
 };
 
-function makeNotification(
-  overrides: Partial<Notification> = {},
-): Notification {
+function makeNotification(overrides: Partial<Notification> = {}): Notification {
   return {
     id: "notif-1",
     type: "pr_review",
@@ -37,9 +35,14 @@ describe("NotificationItem", () => {
         onMarkAsRead={vi.fn()}
       />,
     );
-    const link = screen.getByRole("link", { name: /review requested on pr #42/i });
+    const link = screen.getByRole("link", {
+      name: /review requested on pr #42/i,
+    });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "https://github.com/owner/my-repo/pull/42");
+    expect(link).toHaveAttribute(
+      "href",
+      "https://github.com/owner/my-repo/pull/42",
+    );
   });
 
   it("renders the notification description", () => {
@@ -49,7 +52,9 @@ describe("NotificationItem", () => {
         onMarkAsRead={vi.fn()}
       />,
     );
-    expect(screen.getByText("Please review this pull request")).toBeInTheDocument();
+    expect(
+      screen.getByText("Please review this pull request"),
+    ).toBeInTheDocument();
   });
 
   it("renders the sender name as a link", () => {
@@ -79,7 +84,9 @@ describe("NotificationItem", () => {
         onMarkAsRead={vi.fn()}
       />,
     );
-    expect(screen.getByRole("button", { name: /mark as read/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /mark as read/i }),
+    ).toBeInTheDocument();
   });
 
   it("does not show Mark as read button for read notifications", () => {
@@ -89,7 +96,9 @@ describe("NotificationItem", () => {
         onMarkAsRead={vi.fn()}
       />,
     );
-    expect(screen.queryByRole("button", { name: /mark as read/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /mark as read/i }),
+    ).not.toBeInTheDocument();
   });
 
   it("calls onMarkAsRead with the notification id when button clicked", async () => {
@@ -100,7 +109,9 @@ describe("NotificationItem", () => {
         onMarkAsRead={onMarkAsRead}
       />,
     );
-    await userEvent.click(screen.getByRole("button", { name: /mark as read/i }));
+    await userEvent.click(
+      screen.getByRole("button", { name: /mark as read/i }),
+    );
     expect(onMarkAsRead).toHaveBeenCalledWith("notif-42");
   });
 

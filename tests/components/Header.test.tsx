@@ -37,12 +37,16 @@ describe("Header", () => {
 
   it("renders Dashboard navigation link", () => {
     renderHeader();
-    expect(screen.getByRole("link", { name: /dashboard/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /dashboard/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Repositories navigation link", () => {
     renderHeader();
-    expect(screen.getByRole("link", { name: /repositories/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /repositories/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Issues navigation link", () => {
@@ -52,7 +56,9 @@ describe("Header", () => {
 
   it("renders Pull Requests navigation link", () => {
     renderHeader();
-    expect(screen.getByRole("link", { name: /pull requests/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /pull requests/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders user avatar with correct src", () => {
@@ -63,25 +69,35 @@ describe("Header", () => {
 
   it("renders toggle theme button", () => {
     renderHeader();
-    expect(screen.getByRole("button", { name: /toggle theme/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /toggle theme/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders notifications button", () => {
     renderHeader();
-    expect(screen.getByRole("button", { name: /notifications/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /notifications/i }),
+    ).toBeInTheDocument();
   });
 
   it("opens notifications dropdown when notifications button is clicked", async () => {
     renderHeader();
-    await userEvent.click(screen.getByRole("button", { name: /notifications/i }));
+    await userEvent.click(
+      screen.getByRole("button", { name: /notifications/i }),
+    );
     expect(screen.getByText("Notifications")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /view all notifications/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /view all notifications/i }),
+    ).toBeInTheDocument();
   });
 
   it("opens profile dropdown when avatar is clicked", async () => {
     renderHeader();
     // The profile button wraps the avatar image
-    const profileButton = screen.getByAltText(/testuser.*avatar/i).closest("button")!;
+    const profileButton = screen
+      .getByAltText(/testuser.*avatar/i)
+      .closest("button")!;
     await userEvent.click(profileButton);
     expect(screen.getByRole("link", { name: /account/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /settings/i })).toBeInTheDocument();
@@ -90,6 +106,8 @@ describe("Header", () => {
 
   it("renders documentation link", () => {
     renderHeader();
-    expect(screen.getByRole("link", { name: /documentation/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /documentation/i }),
+    ).toBeInTheDocument();
   });
 });

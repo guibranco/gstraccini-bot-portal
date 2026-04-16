@@ -17,7 +17,11 @@ const defaultProps = {
     { value: "low", label: "Low", color: "22c55e" },
   ],
   senderOptions: [
-    { value: "octocat", label: "Octocat", avatar: "https://example.com/octocat.png" },
+    {
+      value: "octocat",
+      label: "Octocat",
+      avatar: "https://example.com/octocat.png",
+    },
   ],
   isFiltersExpanded: false,
   onToggleUnreadOnly: vi.fn(),
@@ -36,17 +40,26 @@ describe("NotificationFilters", () => {
 
   it("renders Show More button when filters are collapsed", () => {
     render(<NotificationFilters {...defaultProps} isFiltersExpanded={false} />);
-    expect(screen.getByRole("button", { name: /show more/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /show more/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Show Less button when filters are expanded", () => {
     render(<NotificationFilters {...defaultProps} isFiltersExpanded={true} />);
-    expect(screen.getByRole("button", { name: /show less/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /show less/i }),
+    ).toBeInTheDocument();
   });
 
   it("calls onToggleExpanded when Show More/Less is clicked", async () => {
     const onToggleExpanded = vi.fn();
-    render(<NotificationFilters {...defaultProps} onToggleExpanded={onToggleExpanded} />);
+    render(
+      <NotificationFilters
+        {...defaultProps}
+        onToggleExpanded={onToggleExpanded}
+      />,
+    );
     await userEvent.click(screen.getByRole("button", { name: /show more/i }));
     expect(onToggleExpanded).toHaveBeenCalledOnce();
   });
@@ -64,25 +77,38 @@ describe("NotificationFilters", () => {
   it("calls onToggleUnreadOnly when Show unread only button is clicked", async () => {
     const onToggleUnreadOnly = vi.fn();
     render(
-      <NotificationFilters {...defaultProps} onToggleUnreadOnly={onToggleUnreadOnly} />,
+      <NotificationFilters
+        {...defaultProps}
+        onToggleUnreadOnly={onToggleUnreadOnly}
+      />,
     );
-    await userEvent.click(screen.getByRole("button", { name: /show unread only/i }));
+    await userEvent.click(
+      screen.getByRole("button", { name: /show unread only/i }),
+    );
     expect(onToggleUnreadOnly).toHaveBeenCalledOnce();
   });
 
   it("does not show Clear Filters button when no active filters", () => {
     render(<NotificationFilters {...defaultProps} />);
-    expect(screen.queryByRole("button", { name: /clear filters/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /clear filters/i }),
+    ).not.toBeInTheDocument();
   });
 
   it("shows Clear Filters button when showUnreadOnly is true", () => {
     render(<NotificationFilters {...defaultProps} showUnreadOnly={true} />);
-    expect(screen.getByRole("button", { name: /clear filters/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /clear filters/i }),
+    ).toBeInTheDocument();
   });
 
   it("shows Clear Filters button when types are selected", () => {
-    render(<NotificationFilters {...defaultProps} selectedTypes={["pr_review"]} />);
-    expect(screen.getByRole("button", { name: /clear filters/i })).toBeInTheDocument();
+    render(
+      <NotificationFilters {...defaultProps} selectedTypes={["pr_review"]} />,
+    );
+    expect(
+      screen.getByRole("button", { name: /clear filters/i }),
+    ).toBeInTheDocument();
   });
 
   it("calls onClearFilters when Clear Filters is clicked", async () => {
@@ -94,7 +120,9 @@ describe("NotificationFilters", () => {
         onClearFilters={onClearFilters}
       />,
     );
-    await userEvent.click(screen.getByRole("button", { name: /clear filters/i }));
+    await userEvent.click(
+      screen.getByRole("button", { name: /clear filters/i }),
+    );
     expect(onClearFilters).toHaveBeenCalledOnce();
   });
 });

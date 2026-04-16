@@ -32,7 +32,9 @@ describe("LandingHeader", () => {
 
   it("renders the Documentation link", () => {
     renderHeader();
-    expect(screen.getByRole("link", { name: /documentation/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /documentation/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Sign In link when unauthenticated", () => {
@@ -42,11 +44,15 @@ describe("LandingHeader", () => {
 
   it("does not render Dashboard link when unauthenticated", () => {
     renderHeader();
-    expect(screen.queryByRole("link", { name: /dashboard/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: /dashboard/i }),
+    ).not.toBeInTheDocument();
   });
 
   it("does not render Sign Out button when unauthenticated", () => {
     renderHeader();
-    expect(screen.queryByRole("button", { name: /sign out/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /sign out/i }),
+    ).not.toBeInTheDocument();
   });
 });

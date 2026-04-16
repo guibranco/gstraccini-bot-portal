@@ -30,36 +30,50 @@ describe("Footer", () => {
 
   it("renders Privacy Policy link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /privacy policy/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /privacy policy/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Terms of Service link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /terms of service/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /terms of service/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Security link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /^security$/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /^security$/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Service Status link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /service status/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /service status/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders Documentation external link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /documentation/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /documentation/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders GitHub Marketplace link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /github marketplace/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /github marketplace/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders GitHub Repository link", () => {
     renderFooter();
-    expect(screen.getByRole("link", { name: /github repository/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /github repository/i }),
+    ).toBeInTheDocument();
   });
 });

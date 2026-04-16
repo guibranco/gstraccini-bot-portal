@@ -49,6 +49,8 @@ describe("WelcomeSection", () => {
 
   it("renders the subtitle text", () => {
     render(<WelcomeSection user={mockUser} />);
-    expect(screen.getByText(/we're glad to have you back/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/we're glad to have you back/i),
+    ).toBeInTheDocument();
   });
 });
