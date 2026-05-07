@@ -1,3 +1,9 @@
+2e1522054d3009edd4cc682e479341776b266eb0:src/pages/Integrations.tsx:generic-api-key:12
+2e1522054d3009edd4cc682e479341776b266eb0:src/mockData.ts:generic-api-key:505
+2e1522054d3009edd4cc682e479341776b266eb0:src/pages/Settings.tsx:generic-api-key:127
+2e1522054d3009edd4cc682e479341776b266eb0:src/pages/RepositoryDetail.tsx:generic-api-key:124
+2e1522054d3009edd4cc682e479341776b266eb0:src/pages/RepositoryDetail.tsx:generic-api-key:160
+2e1522054d3009edd4cc682e479341776b266eb0:src/pages/RepositoryDetail.tsx:generic-api-key:178
 815fb4f936868bb9db4ea8d1331b8ee7c9abbe8a:src/pages/Integrations.tsx:generic-api-key:12
 815fb4f936868bb9db4ea8d1331b8ee7c9abbe8a:src/mockData.ts:generic-api-key:488
 815fb4f936868bb9db4ea8d1331b8ee7c9abbe8a:src/pages/Settings.tsx:generic-api-key:114
