@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
   Navigate,
@@ -28,7 +28,7 @@ import { Integrations } from "./pages/Integrations";
 function App() {
   return (
     <AuthProvider>
-      <Router basename={import.meta.env.BASE_URL}>
+      <Router>
         <Routes>
           {/* Public Routes - Landing Pages */}
           <Route path="/" element={<PublicLayout />}>
