@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { Github, Bot } from "lucide-react";
+import { Bot } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -83,7 +85,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1"
                 >
-                  <Github className="w-4 h-4" />
+                  <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
                   GitHub Marketplace
                 </a>
               </li>
@@ -94,7 +96,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1"
                 >
-                  <Github className="w-4 h-4" />
+                  <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
                   GitHub Repository
                 </a>
               </li>

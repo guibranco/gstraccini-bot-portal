@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Github,
   KeyRound,
   Mail,
   Fingerprint,
@@ -12,6 +11,8 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import LandingHeader from "../components/LandingHeader";
 import LandingFooter from "../components/LandingFooter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 // Mock user data
 const MOCK_USERS = {
@@ -279,7 +280,7 @@ export default function AuthPage() {
               onClick={handleGitHubLogin}
               className="w-full flex justify-center items-center gap-3 px-4 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
             >
-              <Github className="h-5 w-5" />
+              <FontAwesomeIcon icon={faGithub} className="h-5 w-5" />
               Continue with GitHub
             </button>
 
