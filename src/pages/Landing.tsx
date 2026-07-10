@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Bot, Github, ArrowRight } from "lucide-react";
+import { Bot, ArrowRight } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import FeaturesGrid from "../components/FeaturesGrid";
 import CommandsSection from "../components/CommandsSection";
 import LandingHeader from "../components/LandingHeader";
 import LandingFooter from "../components/LandingFooter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export function Landing() {
   const { isAuthenticated } = useAuth();
@@ -51,7 +53,7 @@ export function Landing() {
                   to="/auth"
                   className="inline-flex items-center px-6 py-3 rounded-full bg-blue-500 text-white font-semibold hover:bg-blue-400 transition-colors"
                 >
-                  <Github className="mr-2 h-5 w-5" />
+                  <FontAwesomeIcon icon={faGithub} className="mr-2 h-5 w-5" />
                   Login with GitHub
                 </Link>
               )}
