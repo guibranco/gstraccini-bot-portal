@@ -469,7 +469,7 @@ export const mockProviders: Record<string, Provider> = {
   Claude: {
     name: "Claude",
     logo: "https://cdn.simpleicons.org/Claude",
-    description: "AI-Powered Code Analysis and Review", 
+    description: "Anthropic AI-Powered Code Analysis and Review", 
   },
 };
 
