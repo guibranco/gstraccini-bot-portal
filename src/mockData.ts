@@ -413,7 +413,7 @@ export const mockRepositories: Repository[] = [
 export const mockProviders: Record<string, Provider> = {
   SonarCloud: {
     name: "SonarCloud",
-    logo: "https://cdn.simpleicons.org/sonarcloud",
+    logo: "https://cdn.simpleicons.org/SonarQubeCloud",
     description: "Code Quality and Security Analysis",
   },
   AppVeyor: {
@@ -448,7 +448,7 @@ export const mockProviders: Record<string, Provider> = {
   },
   OpenAI: {
     name: "OpenAI",
-    logo: "https://cdn.simpleicons.org/openai",
+    logo: "https://bot.straccini.com/images/OpenAI.png",
     description: "AI-Powered Code Analysis and Review",
   },
   Llama: {
@@ -465,6 +465,11 @@ export const mockProviders: Record<string, Provider> = {
     name: "CloudAMQP",
     logo: "https://bot.straccini.com/images/CloudAMQP.png",
     description: "Managed RabbitMQ Message Broker",
+  },
+  Claude: {
+    name: "Claude",
+    logo: "https://cdn.simpleicons.org/Claude",
+    description: "AI-Powered Code Analysis and Review", 
   },
 };
 
