@@ -238,3 +238,37 @@ describe("installGlobalErrorHandlers", () => {
     expect(flushSpy).toHaveBeenCalledWith(true);
   });
 });
+
+describe("trace id fallback", () => {
+  it("uses getRandomValues when randomUUID is unavailable", async () => {
+    vi.resetModules();
+    const original = crypto.randomUUID;
+    Object.defineProperty(crypto, "randomUUID", {
+      value: undefined,
+      configurable: true,
+    });
+    try {
+      const mod = await import("../../src/utils/logger");
+      const fetchFn = vi.fn<typeof fetch>(() =>
+        Promise.resolve(new Response(null, { status: 201 })),
+      );
+      const logger = new mod.Logger({
+        server: "https://logs.example.com",
+        apiKey: "k",
+        apiToken: "t",
+        fetchFn,
+      });
+      logger.info("x");
+      await logger.flush();
+      const body = JSON.parse(
+        (fetchFn.mock.calls[0][1] as RequestInit).body as string,
+      );
+      expect(body.logs[0].trace_id).toMatch(/^[0-9a-f]{32}$/);
+    } finally {
+      Object.defineProperty(crypto, "randomUUID", {
+        value: original,
+        configurable: true,
+      });
+    }
+  });
+});

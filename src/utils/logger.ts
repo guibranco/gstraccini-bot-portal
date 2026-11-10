@@ -44,15 +44,20 @@ const DEFAULT_MAX_QUEUE_SIZE = 200;
 
 /** One id per page load, so all entries from the same visit can be grouped. */
 function newTraceId(): string {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+  if (typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
-  return `${Date.now().toString(16)}-${Math.random().toString(16).slice(2)}`;
+  // randomUUID is only exposed in secure contexts; getRandomValues always is.
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
 }
 
 /** Accepts the server root with or without a trailing slash or `/api/logs`. */
 export function buildIngestUrl(server: string): string {
-  const base = server.trim().replace(/\/+$/, "");
+  let base = server.trim();
+  while (base.endsWith("/")) {
+    base = base.slice(0, -1);
+  }
   return base.endsWith("/api/logs") ? base : `${base}/api/logs`;
 }
 
@@ -77,7 +82,7 @@ export class Logger {
   private readonly maxQueueSize: number;
   private readonly fetchFn?: typeof fetch;
   private readonly traceId = newTraceId();
-  private queue: LogEntry[] = [];
+  private readonly queue: LogEntry[] = [];
   private timer: ReturnType<typeof setTimeout> | null = null;
   private sending = false;
 
@@ -209,12 +214,10 @@ export class Logger {
   }
 
   private scheduleFlush(): void {
-    if (this.timer === null) {
-      this.timer = setTimeout(() => {
-        this.timer = null;
-        void this.flush();
-      }, this.flushIntervalMs);
-    }
+    this.timer ??= setTimeout(() => {
+      this.timer = null;
+      void this.flush();
+    }, this.flushIntervalMs);
   }
 
   private pageContext(): LogContext {
