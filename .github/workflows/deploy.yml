@@ -48,11 +48,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          VITE_APP_VERSION: ${{ steps.gitversion.outputs.fullSemVer }}
-          VITE_LOGSTREAM_SERVER: ${{ secrets.LOGSTREAM_SERVER }}
-          VITE_LOGSTREAM_API_KEY: ${{ secrets.LOGSTREAM_API_KEY }}
-          VITE_LOGSTREAM_API_TOKEN: ${{ secrets.LOGSTREAM_API_TOKEN }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
