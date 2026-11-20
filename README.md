@@ -11,7 +11,7 @@
 [![Vite](https://img.shields.io/badge/Vite-5.4.2-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-[🚀 Live Demo](https://portal.gstraccini.bot) • [📖 Documentation](https://docs.gstraccini.bot) • [🐛 Report Bug](https://github.com/guibranco/gstraccini-bot-portal/issues) • [✨ Request Feature](https://github.com/guibranco/gstraccini-bot-portal/issues)
+[🚀 Live Demo](https://gstraccini.bot) • [📖 Documentation](https://docs.gstraccini.bot) • [🐛 Report Bug](https://github.com/guibranco/gstraccini-bot-portal/issues) • [✨ Request Feature](https://github.com/guibranco/gstraccini-bot-portal/issues)
 
 </div>
 
