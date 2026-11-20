@@ -319,3 +319,28 @@ export interface RepositorySettings {
   createSecretsWorkflow: boolean;
   createLintersWorkflow: boolean;
 }
+
+/**
+ * Opt-in bot features of a GitHub account (user or organization), applied to
+ * every repository of the account that does not override them.
+ * Mirrors GET /v1/account-settings/ of gstraccini-bot-service.
+ */
+export interface AccountFeatureSettings {
+  accountId: number;
+  accountLogin: string;
+  accountType: "User" | "Organization";
+  requestVersionBump: boolean;
+}
+
+/**
+ * Opt-in bot features of a repository; `null` inherits the account setting.
+ * Mirrors GET /v1/repository-settings/ of gstraccini-bot-service.
+ */
+export interface RepositoryFeatureSettings {
+  repositoryId: number;
+  fullName: string;
+  private: boolean;
+  accountId: number;
+  accountLogin: string;
+  requestVersionBump: boolean | null;
+}
