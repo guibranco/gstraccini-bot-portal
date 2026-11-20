@@ -6,14 +6,18 @@ import {
   GitPullRequest,
   Users,
   Cable,
+  GitCompareArrows,
 } from "lucide-react";
 import { RepositorySettings } from "../components/settings/RepositorySettings";
 import { IssuesSettings } from "../components/settings/IssuesSettings";
 import { PullRequestsSettings } from "../components/settings/PullRequestsSettings";
+import { VersionBumpSettings } from "../components/settings/VersionBumpSettings";
 import { TrustedSendersSettings } from "../components/settings/TrustedSendersSettings";
 import { IntegrationsSettings } from "../components/settings/IntegrationsSettings";
 import type {
+  AccountFeatureSettings,
   Integration,
+  RepositoryFeatureSettings,
   TrustedSender,
   DependabotFrequency,
   RepositorySettings as RepoSettings,
@@ -131,6 +135,46 @@ export function Settings() {
     },
   ]);
 
+  // Opt-in features per account and per repository: to be loaded from and saved to
+  // GET/PUT /v1/account-settings/ and /v1/repository-settings/ (gstraccini-bot-service).
+  const [accountFeatureSettings, setAccountFeatureSettings] = useState<
+    AccountFeatureSettings[]
+  >([
+    {
+      accountId: 1,
+      accountLogin: "johndoe",
+      accountType: "User",
+      requestVersionBump: false,
+    },
+    {
+      accountId: 2,
+      accountLogin: "acme",
+      accountType: "Organization",
+      requestVersionBump: false,
+    },
+  ]);
+
+  const [repositoryFeatureSettings, setRepositoryFeatureSettings] = useState<
+    RepositoryFeatureSettings[]
+  >([
+    {
+      repositoryId: 101,
+      fullName: "acme/api",
+      private: true,
+      accountId: 2,
+      accountLogin: "acme",
+      requestVersionBump: null,
+    },
+    {
+      repositoryId: 102,
+      fullName: "johndoe/website",
+      private: false,
+      accountId: 1,
+      accountLogin: "johndoe",
+      requestVersionBump: null,
+    },
+  ]);
+
   const [successMessage, setSuccessMessage] = useState("");
 
   const showSuccessMessage = useCallback(
@@ -172,6 +216,48 @@ export function Settings() {
         showSuccessMessage();
       } catch (error) {
         console.error("Failed to save settings:", error);
+      }
+    },
+    [showSuccessMessage],
+  );
+
+  const handleAccountFeatureChange = useCallback(
+    async (accountId: number, value: boolean) => {
+      setAccountFeatureSettings((prev) =>
+        prev.map((account) =>
+          account.accountId === accountId
+            ? { ...account, requestVersionBump: value }
+            : account,
+        ),
+      );
+
+      try {
+        // Simulate API call: PUT /v1/account-settings/{accountId}/ {"requestVersionBump": value}
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        showSuccessMessage("Account setting updated");
+      } catch (error) {
+        console.error("Failed to save account setting:", error);
+      }
+    },
+    [showSuccessMessage],
+  );
+
+  const handleRepositoryFeatureChange = useCallback(
+    async (repositoryId: number, value: boolean | null) => {
+      setRepositoryFeatureSettings((prev) =>
+        prev.map((repository) =>
+          repository.repositoryId === repositoryId
+            ? { ...repository, requestVersionBump: value }
+            : repository,
+        ),
+      );
+
+      try {
+        // Simulate API call: PUT /v1/repository-settings/{repositoryId}/ {"requestVersionBump": value}
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        showSuccessMessage("Repository setting updated");
+      } catch (error) {
+        console.error("Failed to save repository setting:", error);
       }
     },
     [showSuccessMessage],
@@ -277,6 +363,14 @@ export function Settings() {
           icon={<GitPullRequest className="w-6 h-6" />}
           settings={settings}
           onChange={handleSettingChange}
+        />
+
+        <VersionBumpSettings
+          icon={<GitCompareArrows className="w-6 h-6" />}
+          accounts={accountFeatureSettings}
+          repositories={repositoryFeatureSettings}
+          onAccountChange={handleAccountFeatureChange}
+          onRepositoryChange={handleRepositoryFeatureChange}
         />
 
         <TrustedSendersSettings
