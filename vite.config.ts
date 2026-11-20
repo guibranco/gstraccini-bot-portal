@@ -1,10 +1,10 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
-// Deployed at: https://guilherme.stracini.com.br/gstraccini-bot-portal
+// Deployed at: https://gstraccini.bot
 export default defineConfig({
   plugins: [react()],
-  base: "/gstraccini-bot-portal/",
+  base: "/",
   build: {
     outDir: "dist",
     sourcemap: true,
