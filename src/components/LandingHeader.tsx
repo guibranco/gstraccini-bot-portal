@@ -60,7 +60,7 @@ export default function LandingHeader() {
                 )}
                 <li>
                   <a
-                    href="https://docs.bot.straccini.com"
+                    href="https://docs.gstraccini.bot"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-gray-900 transition-colors"

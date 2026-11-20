@@ -538,12 +538,12 @@ export default function StatusPage() {
                       Documentation
                     </p>
                     <a
-                      href="https://docs.bot.straccini.com"
+                      href="https://docs.gstraccini.bot"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-blue-600 hover:text-blue-800"
                     >
-                      docs.bot.straccini.com
+                      docs.gstraccini.bot
                     </a>
                   </div>
                   <div>

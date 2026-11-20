@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "gstraccini-bot-portal",
+  "compatibility_date": "2026-11-20",
+  // Static Vite/React SPA: no Worker script, assets only.
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    {
+      "pattern": "gstraccini.bot",
+      "custom_domain": true
+    }
+  ]
+}
